@@ -1,7 +1,8 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat Alternates','Poppins' ,sans-serif;
+    font-family: 'Poppins' , sans-serif;
+    font-weight: 700;
 }
 video {
   object-fit: cover;
@@ -12,12 +13,10 @@ video {
   width: 100%;
 }
 section{
-    position:relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: 100vh;
     width: 100%;
     background: transparent;
     background-position: center;
@@ -31,49 +30,39 @@ section{
     background-position: center;
     background-size: cover;
     z-index: 1;
-    position: relative;
+    position: absolute;
 }
 .waveHaikei{
-    background-image: url("./layered-waves.svg");
+    background-image: url("./wave-haikei.svg");
 }
 .TopBanner{
-   position: relative;
+   position: absolute;
+   z-index: 1;
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 12vh;
+   height: 6vh;
    top: 0%;
    width: 100%;
-   background-color: #38227f;
+   background-color: rgba(6, 1, 23, 1);
    background-position: center;
    background-size: cover;
 }
 .TopContainer{
     background: transparent;
     position: relative;
-    z-index: 1;
-    top: 0;
-    width: 100%;
-    min-height: 40vh;
-    /* border: 2px solid rgba(6,1,23, 0.2);
+    top: 2em;
+    overflow: hidden;
+    width: 85vw;
+    height: 90vh;
+    border: 2px solid rgba(6,1,23, 0.2);
     border-radius: 20px;
-    backdrop-filter: blur(30px); */
-}
-.MainTextHolder{
-    position: static;
-    background: transparent;
-    z-index: 1;
-    width: 100%;
-    margin-top: -25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    backdrop-filter: blur(30px);
 }
 .CenteredElements{
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+    overflow: hidden
+    width: 85vw;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,37 +73,34 @@ section{
     100%{ transform: translateY(150%);}
 }
 .MainText{
-    font-size: 3rem;
-    z-index: 1;
-    letter-spacing: -1.3px;
-    position: relative;
+     position: absolute;
+     left: 2em;
+     top: -2rem;
     /*transform: translateY(100%);
     transition: 1s;*/
-    /*animation: onLoad 1s ease-in-out 0s 1 normal forwards;*/
+    animation: onLoad 1s ease-in-out 0s 1 normal forwards;
     /*animation-name: onLoad;
     animation-duration: 1s;
     animation-fill-mode: forwards;*/
 }
 h2{
-    /*font-size: 2em;*/
+    font-size: 2em;
     /*color: #020C21;*/
     /*color: #f0e2fa;*/
-    /*color: #fafafc;*/
-    font-weight: 500; 
-    color: #120932;
+    color: #fafafc;
     text-align: center;
 }
 .TestInput{
     position: relative;
-    margin: 30px 0;
-    width: 310px;
+    margin 30px 0;
+    width 310px;
     border-bottom: 2px solid #fff;
 }
 .TestInput label{
     position: absolute;
     color: #f0e2fa;
     top: 70%;
-    left: 5px;
+    left 5px;
     transform: translateY(-50%);
     color: #fff;
     font-size: 1rem;
@@ -136,7 +122,4 @@ color: rgba(240, 226, 250, 0)
     font-size: 1em;
     padding:0 35px 0 5px;
     color: #fff;
-}
-.lightPink{
-    background: #fff5fc;
 }
