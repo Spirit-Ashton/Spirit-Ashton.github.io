@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat Alternates','Poppins' ,sans-serif;
+    font-family: 'Roboto','Montserrat Alternates','Poppins' ,sans-serif;
 }
 video {
   object-fit: cover;
@@ -38,6 +38,7 @@ section{
 }
 .TopBanner{
    position: relative;
+   z-index: 3;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -50,14 +51,15 @@ section{
 }
 .TopText{
     z-index: 1;
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: 400;
-    color: #fff5fc;
+    color: #fff;
     text-align: center;
     transition: 0.2s;
+    padding: 0.4em;
 }
 .TopText:hover {
-    color: #120932;
+    color: rgba(255, 245, 252, 0.6);
 }
 ul{
     display: flex;
@@ -92,6 +94,9 @@ li a {
     top: 0;
     width: 100%;
     min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* border: 2px solid rgba(6,1,23, 0.2);
     border-radius: 20px;
     backdrop-filter: blur(30px); */
@@ -121,7 +126,7 @@ li a {
     100%{ transform: translateY(150%);}
 }
 .MainText{
-    font-size: 3rem;
+    font-size: 2rem;
     z-index: 1;
     letter-spacing: -1.3px;
     position: relative;
@@ -137,10 +142,22 @@ h2{
     /*color: #020C21;*/
     /*color: #f0e2fa;*/
     /*color: #fafafc;*/
-    font-weight: 500; 
     color: #120932;
+    font-weight: 700; 
+    color: rgba(18, 9, 50, 0.9);
     text-align: center;
 }
+.IntroductionBox{
+    min-width: 50%;
+    max-width: 65%;
+    display: flex;
+}
+.IntroductionText{
+    font-weight: 300;
+    color: rgba(18, 9, 50, 0.86);
+    text-align: center;
+}
+
 .TestInput{
     position: relative;
     margin: 30px 0;
@@ -176,4 +193,7 @@ color: rgba(240, 226, 250, 0)
 }
 .lightPink{
     background: #fff5fc;
+}
+.white{
+    background: #fff
 }
