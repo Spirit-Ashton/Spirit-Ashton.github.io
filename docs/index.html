@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script>
-    <script src="script.js"></script>
 
     <title>Spirit: Portfolio Site</title>
 </head>
@@ -43,12 +42,12 @@
         </div>
     </section>
     <section class="ProjectsBG">
-            <div class="spacerWO waveOpacity"></div>
-            <div class="ProjectsBanner">
-                <div class= "projectTitle">Projects</div>
-            </div>
             <div class="previewContainer">
-                <div class="platformerVW">
+                <div class="spacerWO waveOpacity"></div>
+                <div class="ProjectsBanner">
+                    <div class= "projectTitle">Projects</div>
+                </div>
+                <!-- <div class="platformerVW">
                     <figure>
                         <video playsinline autoplay muted loop poster="Vid Poster.jpg">
                             <source src="Test%20WebBG%20Vid.webm">
@@ -61,8 +60,31 @@
                         <img src="Screenshot (282).png" alt="Platformer Game">
                         <figcaption>2D Platformer Game: Controller Input</figcaption>
                     </figure>
+                </div> -->
+                <div class="previewContent">
+                    <div class="previewIntro">
+                        <div class="previewTextWrapper">
+                        <span><h5 class="title" style="--idx: 0"></h5></span>
+                        <span><h5 class="type" style="--idx: 1"></h5></span>
+                        <span><h5 class="description" style="--idx: 2"></h5></span>
+                        <span>
+                            <button class="readMoreButton" style="--idx: 3">Read More</button>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="thumbnailList">
+                        <div class="previewWrapper">
+            
+                        </div>
+                    </div>
+                </div>
+                <div class="previewNav">
+                  <button class="nextButton">Next</button>
+                  <span class="previewLine"></span>
+                  <span class="previewNumber"></span>
                 </div>
             </div>
     </section>
+    <script src="script.js"></script>
 </body>
 </html>
