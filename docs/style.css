@@ -26,7 +26,7 @@ section{
     justify-content: center;
     align-items: center;    
     min-height: 40vh;    
-    width: 100vw;
+    width: 100%;
     background: transparent;
     background-position: center;
     background-size: cover;
@@ -34,7 +34,7 @@ section{
 body{
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    max-width: 100%;
     justify-content: center;
     overflow-x: hidden;
 }
@@ -235,7 +235,7 @@ h2{
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
   .previewContainer .previewIntro{
     position: relative;
@@ -301,6 +301,7 @@ h2{
     width: 250px;
     height: 50px;
     border-radius: 50px;
+    margin-bottom: 20px;
     margin-top: 20px;
   }
   .previewContent .thumbnailList{
