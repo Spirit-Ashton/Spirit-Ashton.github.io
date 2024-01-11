@@ -1,18 +1,21 @@
 var projectPreviewData = [
   {
-    img: "./Screenshot (282).png",
-    title: "Insionné",
-    type: "Platformer Game",
-    description: "This is a platformer game, blah de blah de blah!",
-  },
-  {
     img: "./Vid Poster.jpg",
+    video: "./Test WebBG Vid.webm",
     title: "Fruit Star!",
     type: "Platformer Game",
     description: "This is a simple platformer, fruits go yum!",
   },
   {
+    img: "./Screenshot (282).png",
+    // video: "./Test WebBG Vid.webm",
+    title: "Insionné",
+    type: "Platformer Game",
+    description: "This is a platformer game, blah de blah de blah!",
+  },
+  {
     img: "./Funky Farah.jpg",
+    // video: "./Test WebBG Vid.webm",
     title: "Funky Fairy!",
     type: "Logo Design",
     description: "This is a logo I made. Colours go pop!",
@@ -46,14 +49,27 @@ const thumbnailListWrapper = document.querySelector(".thumbnailList .previewWrap
 thumbnailListWrapper.innerHTML += `
   <div class="thumbnail zoom">
     <img src="${projectPreviewData[0].img}" alt=""></img>
+      <video playsinline autoplay muted loop>
+        <source src="${projectPreviewData[0].video}">
+      </video>
   </div>
 `;
 for (let i = 1; i < projectPreviewData.length; i++) {
   thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}">
       <img src="${projectPreviewData[i].img}" alt=""></img>
+      <video playsinline autoplay muted loop>
+        <source src="${projectPreviewData[i].video}">
+      </video>
     </div>
   `;
+  // thumbnailListWrapper.innerHTML += `
+  //   <div class="thumbnail" style="--idx: ${i - 1}">
+  //     <video playsinline autoplay muted loop poster="Vid Poster.jpg">
+  //       <source src="${projectPreviewData[i].video}">
+  //     </video>
+  //   </div>
+  // `;
 }
 console.log(thumbnailListWrapper.innerHTML);
 const nextBtn = document.querySelector(".previewNav .nextButton");
