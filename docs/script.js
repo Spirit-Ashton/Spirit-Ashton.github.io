@@ -102,9 +102,9 @@ const nextBtn = document.querySelector(".previewNav .nextButton");
 var currentIndex = 0;
 nextBtn.addEventListener("click", () => {
   nextBtn.disabled = true;
-  thumbnailListWrapper.appendChild(Unmask.children[0]);
-  $(Unmask.children[0]).appendTo(".previewWrapper");
-  thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+  //thumbnailListWrapper.appendChild(Unmask.children[0]);
+  // $(Unmask.children[0]).appendTo(".previewWrapper");
+  // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
   // var clone = thumbnailListWrapper.children[0].cloneNode(true);
   // var clone2 = thumbnailList.children[2];
 
@@ -126,12 +126,17 @@ nextBtn.addEventListener("click", () => {
   thumbnailListWrapper.children[0].remove();
   //Unmask.children[0].classList.add("zoom");
   setTimeout(() => {
-    Unmask.children[0].classList.add("zoom");
+    Unmask.children[1].classList.add("zoom");
   }, 10)
 
   setTimeout(() => {
     // thumbnailListWrapper.children[0].remove();
     // Unmask.children[0].classList.add("zoom");
+    // $(Unmask.children[0]).appendTo(".previewWrapper");
+    // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+    $(Unmask.children[0]).appendTo(".previewWrapper");
+    thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+    thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style = `--idx: ${thumbnailListWrapper.childElementCount - 1}`;
     nextBtn.disabled = false;
   }, 1000)
 
