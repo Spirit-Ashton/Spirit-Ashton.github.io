@@ -20,10 +20,24 @@ var projectPreviewData = [
     type: "Logo Design",
     description: "This is a logo I made. Colours go pop!",
   },
+  {
+    img: "./black.jpg",
+    // video: "./Test WebBG Vid.webm",
+    title: "BLACK!",
+    type: "Black Screen",
+    description: "Black",
+  },
+  {
+    img: "./Screenshot (28).png",
+    // video: "./Test WebBG Vid.webm",
+    title: "Minecraft",
+    type: "Block Game",
+    description: "I made le Mine game",
+  },
 ];
 
 const previewIntro = document.querySelector(".previewIntro");
-const previewNumber = document.querySelector(".previewNumber")
+const previewNumber = document.querySelector(".previewNumber");
 
 previewIntro.innerHTML = "";
 previewNumber.innerHTML = "";
@@ -45,15 +59,18 @@ for (let i = 0; i < projectPreviewData.length; i++) {
 previewIntro.children[0].classList.add("active");
 previewNumber.children[0].classList.add("active");
 
+const thumbnailList = document.querySelector(".previewContent .thumbnailList");
+const Unmask = document.querySelector(".thumbnailList .previewWrapperUnmask")
 const thumbnailListWrapper = document.querySelector(".thumbnailList .previewWrapper");
-thumbnailListWrapper.innerHTML += `
-  <div class="thumbnail zoom">
-    <img src="${projectPreviewData[0].img}" alt=""></img>
-      <video playsinline autoplay muted loop>
-        <source src="${projectPreviewData[0].video}">
-      </video>
-  </div>
-`;
+// thumbnailListWrapper.innerHTML += `
+//   <div class="thumbnail zoom">
+//     <img src="${projectPreviewData[0].img}" alt=""></img>
+//       <video playsinline autoplay muted loop>
+//         <source src="${projectPreviewData[0].video}">
+//       </video>
+//   </div>
+// `;
+
 for (let i = 1; i < projectPreviewData.length; i++) {
   thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}">
@@ -63,30 +80,65 @@ for (let i = 1; i < projectPreviewData.length; i++) {
       </video>
     </div>
   `;
-  // thumbnailListWrapper.innerHTML += `
-  //   <div class="thumbnail" style="--idx: ${i - 1}">
-  //     <video playsinline autoplay muted loop poster="Vid Poster.jpg">
-  //       <source src="${projectPreviewData[i].video}">
-  //     </video>
-  //   </div>
-  // `;
 }
-console.log(thumbnailListWrapper.innerHTML);
+// thumbnailList.innerHTML += `
+//   <div class="thumbnail zoom">
+//     <img src="${projectPreviewData[0].img}" alt=""></img>
+//       <video playsinline autoplay muted loop>
+//         <source src="${projectPreviewData[0].video}">
+//       </video>
+//   </div>
+// `;
+Unmask.innerHTML += `
+  <div class="thumbnail zoom">
+    <img src="${projectPreviewData[0].img}" alt=""></img>
+      <video playsinline autoplay muted loop>
+        <source src="${projectPreviewData[0].video}">
+      </video>
+  </div>
+`;
+
 const nextBtn = document.querySelector(".previewNav .nextButton");
 var currentIndex = 0;
 nextBtn.addEventListener("click", () => {
   nextBtn.disabled = true;
-  var clone = thumbnailListWrapper.children[0].cloneNode(true);
-  clone.classList.remove("zoom");
-  thumbnailListWrapper.appendChild(clone);
-  thumbnailListWrapper.children[1].classList.add("zoom");
+  thumbnailListWrapper.appendChild(Unmask.children[0]);
+  $(Unmask.children[0]).appendTo(".previewWrapper");
+  thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+  // var clone = thumbnailListWrapper.children[0].cloneNode(true);
+  // var clone2 = thumbnailList.children[2];
+
+  // clone.classList.remove("zoom");  
+  // thumbnailListWrapper.appendChild(clone);
+  // $(clone2).appendTo(thumbnailListWrapper);
+  // $(clone).appendTo(thumbnailListWrapper);
+  // $(clone).appendTo(thumbnailList);
+  // $(".thumbnail.zoom").prependTo(".previewWrapper"); 
+  // thumbnailListWrapper.children[1].classList.add("zoom");
+  
+  // var clone3 = thumbnailListWrapper.children[0].cloneNode(true);
+  // clone3.classList.add("zoom");
+  // $(clone3).appendTo(thumbnailList);
+  // $(clone2).appendTo(".previewWrapper");
+  // clone2.classList.remove("zoom");
+
+  $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
+  thumbnailListWrapper.children[0].remove();
+  //Unmask.children[0].classList.add("zoom");
   setTimeout(() => {
-    thumbnailListWrapper.children[0].remove();
+    Unmask.children[0].classList.add("zoom");
+  }, 10)
+
+  setTimeout(() => {
+    // thumbnailListWrapper.children[0].remove();
+    // Unmask.children[0].classList.add("zoom");
     nextBtn.disabled = false;
   }, 1000)
 
-  for (let i = 2; i < thumbnailListWrapper.childElementCount; i++) {
-    thumbnailListWrapper.children[i].style = `--idx: ${i - 2}`;
+  Unmask.children[0].style = `--idx: 0`;
+
+  for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
+    thumbnailListWrapper.children[i].style = `--idx: ${i}`;
   }
   if (currentIndex < projectPreviewData.length - 1) {
     currentIndex++;

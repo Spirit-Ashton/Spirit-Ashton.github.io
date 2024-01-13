@@ -163,12 +163,14 @@ a:focus{
     animation-duration: 1s;
     animation-fill-mode: forwards;*/
 }
-h2{
+.MainText h2{
     /*font-size: 2em;*/
     /*color: #020C21;*/
     /*color: #f0e2fa;*/
     /*color: #fafafc;*/
-    color: #120932;
+    font-size: 2em;
+    /* color: #120932; */
+    color: #191e21;
     font-weight: 700; 
     /* color: rgba(18, 9, 50, 0.9); */
     text-align: center;
@@ -181,28 +183,34 @@ h2{
 }
 .IntroductionText{
     font-weight: 300;
-    color: rgba(18, 9, 50, 0.86);
+    /* color: rgba(18, 9, 50, 0.86); */
+    color: #191e21;
     text-align: center;
 }
 .ProjectsBanner{
-    position: relative;
+    position: absolute;
     z-index: 25;
-    margin: 15vh 0 10vh;
+    top: 0%;
+    width: 100%;
+    margin: 15svh 0 10svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 12vh;
+    /* min-height: 12vh;
     min-width: 20vw;
-    max-width: 65vw;
+    max-width: 65vw; */
     /* width: 100%; */
  }
  .projectTitle{
-    opacity: 0.85;
-    font-size: 3em;
+    /* opacity: 0.2; */
+    opacity: 0;
+    font-family: 'Outfit';
+    font-size: 5em;
     color: #fff5fc;
     font-weight: 900; 
     text-align: center;
+    text-transform: uppercase;
 
  }
 .previewContainer{
@@ -226,6 +234,8 @@ h2{
 .previewContainer .previewContent{
     height: 100%;
     width: 100%;
+    margin-top: 40svh;
+    /* margin-top: min(40svh, 400px); */
     display: flex;
     /* justify-content: space-evenly; */
 }
@@ -304,7 +314,16 @@ h2{
   .thumbnailList .previewWrapper{
     position: relative;
     z-index: 10;
-    width: 10em;
+    width: 25em;
+    height: 300px;
+    -webkit-mask: linear-gradient(90deg, white 80%, transparent);
+    mask: linear-gradient(90deg, white 80%, transparent);
+  }
+  .thumbnailList .previewWrapperUnmask{
+    position: absolute;
+    z-index: 5;
+    top: 0%;
+    width: 25em;
     height: 300px;
   }
   .thumbnailList .previewWrapper .thumbnail{
@@ -313,18 +332,33 @@ h2{
     width: 10em;
     border-radius: 15px;
     overflow: hidden;
-    /* transition: 0.75s cubic-bezier(0.6, 0.1, 0.3, 1); */
     transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
     transform: translateX(calc(var(--idx) * 230px));
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
   }
-  .thumbnailList .previewWrapper .thumbnail.zoom{
+  .thumbnailList .previewWrapperUnmask .thumbnail{
+    position: absolute;
+    height: 10em;
+    width: 10em;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
+    transform: translateX(calc(var(--idx) * 230px));
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+  }
+  /* .thumbnailList .previewWrapperUnmask .thumbnail.zoom{
     width: 120vw;
-    height: 720px;
-    transform: translate(-50vw, -270px);
+    height: 800px;
+    transform: translate(-50vw, -280px);
     filter: brightness(40%);
     box-shadow: none;
-    
+  } */
+  .thumbnailList .previewWrapperUnmask .thumbnail.zoom{
+    width: 120vw;
+    height: 800px;
+    transform: translate(-50vw, -280px);
+    filter: brightness(40%);
+    box-shadow: none;
   }
   .thumbnail img{
     width: 100%;    
