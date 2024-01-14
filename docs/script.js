@@ -76,7 +76,7 @@ for (let i = 1; i < projectPreviewData.length; i++) {
     thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}" id="buttonFrame">
       <img src="${projectPreviewData[i].img}" alt=""></img>
-      <video playsinline autoplay muted loop>
+      <video playsinline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[i].video}">
       </video>
     </div>
@@ -85,7 +85,7 @@ for (let i = 1; i < projectPreviewData.length; i++) {
     thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}">
       <img src="${projectPreviewData[i].img}" alt=""></img>
-      <video playsinline autoplay muted loop>
+      <video playsinline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[i].video}">
       </video>
     </div>
@@ -103,7 +103,7 @@ for (let i = 1; i < projectPreviewData.length; i++) {
 Unmask.innerHTML += `
   <div class="thumbnail zoom">
     <img src="${projectPreviewData[0].img}" alt=""></img>
-      <video playsinline autoplay muted loop>
+      <video playsinline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[0].video}">
       </video>
   </div>
