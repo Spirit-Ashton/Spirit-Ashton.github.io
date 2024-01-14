@@ -173,7 +173,7 @@ a:focus{
     position: relative;
     background: transparent;
     z-index: 1;
-    width: 700px;
+    width: 100%;
     margin-top: 2em;
     display: flex;
     flex-direction: column;
@@ -204,7 +204,7 @@ a:focus{
     text-align: center;
 }
 .IntroductionBox{
-    min-width: 500px;
+    min-width: 200px;
     max-width: 65vw;
     display: flex;
     padding: 0 0 5em;
