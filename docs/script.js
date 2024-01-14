@@ -114,18 +114,22 @@ var frameButton;
 frameButton = document.getElementById("buttonFrame");
 var currentIndex = 0;
 function ButtonPress() {
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+
+  console.log(`The viewport's width is ${width} and the height is ${height}.`);
   frameButton.disabled = true;
   thumbnailListWrapper.children[0].removeAttribute('id');
   $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
   thumbnailListWrapper.children[0].remove();
   setTimeout(() => {
     Unmask.children[1].classList.add("zoom");
-    frameButton = document.getElementById("buttonFrame");
   }, 10)
   setTimeout(() => {
     $(Unmask.children[0]).appendTo(".previewWrapper");
     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style = `--idx: ${thumbnailListWrapper.childElementCount - 1}`;
+    frameButton = document.getElementById("buttonFrame");
     frameButton.disabled = false;
     frameButton.addEventListener("click", ButtonPress);
   }, 650)
@@ -211,3 +215,21 @@ frameButton.addEventListener("click", ButtonPress);
 //   previewNumber.children[currentIndex].classList.add("active");
 //   previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
 // });
+var t
+window.onresize = () => {
+    resizing(this, this.innerWidth, this.innerHeight) //1
+    if (typeof t == 'undefined') resStarted() //2
+    clearTimeout(t); t = setTimeout(() => { t = undefined; resEnded() }, 500) //3
+}
+
+function resizing(target, w, h) {
+    console.log(`Youre resizing: width ${w} height ${h}`)
+}    
+function resStarted() { 
+    document.body.classList.add("resize-animation-stopper");
+    console.log('Resize Started') 
+}
+function resEnded() { 
+    document.body.classList.remove("resize-animation-stopper");
+    console.log('Resize Ended') 
+}
