@@ -314,7 +314,8 @@ a:focus{
   .thumbnailList .previewWrapper{
     position: relative;
     z-index: 10;
-    width: 25em;
+    width: 35em;
+    /* margin: 2em; */
     height: 300px;
     -webkit-mask: linear-gradient(90deg, white 80%, transparent);
     mask: linear-gradient(90deg, white 80%, transparent);
@@ -328,6 +329,7 @@ a:focus{
   }
   .thumbnailList .previewWrapper .thumbnail{
     position: absolute;
+    margin: 2em;
     height: 10em;
     width: 10em;
     border-radius: 15px;
@@ -338,6 +340,7 @@ a:focus{
   }
   .thumbnailList .previewWrapperUnmask .thumbnail{
     position: absolute;
+    margin: 2em;
     height: 10em;
     width: 10em;
     border-radius: 15px;
@@ -345,6 +348,10 @@ a:focus{
     transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
     transform: translateX(calc(var(--idx) * 230px));
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+  }
+  #buttonFrame:hover{
+    transition-duration: 0.4;
+    transform: scale(1.07, 1.07);
   }
   /* .thumbnailList .previewWrapperUnmask .thumbnail.zoom{
     width: 120vw;
@@ -356,6 +363,10 @@ a:focus{
   .thumbnailList .previewWrapperUnmask .thumbnail.zoom{
     width: 120vw;
     height: 800px;
+    margin: 0;
+    transform-origin: center;
+    /* transition-delay: 0s, 0s, 0s, 0s;
+    transition-property: transform, width, height, margin; */
     transform: translate(-50vw, -280px);
     filter: brightness(40%);
     box-shadow: none;
@@ -384,6 +395,7 @@ a:focus{
     z-index: 20;
   }
   .previewNav .nextButton{
+    opacity: 0;
     color: #fff5fc;
     width: 180px;
     border-radius: 50px;

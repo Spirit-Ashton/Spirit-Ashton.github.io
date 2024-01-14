@@ -72,16 +72,27 @@ const thumbnailListWrapper = document.querySelector(".thumbnailList .previewWrap
 // `;
 
 for (let i = 1; i < projectPreviewData.length; i++) {
-  thumbnailListWrapper.innerHTML += `
-    <div class="thumbnail" style="--idx: ${i - 1}">
+  if (i == 1){
+    thumbnailListWrapper.innerHTML += `
+    <div class="thumbnail" style="--idx: ${i - 1}" id="buttonFrame">
       <img src="${projectPreviewData[i].img}" alt=""></img>
       <video playsinline autoplay muted loop>
         <source src="${projectPreviewData[i].video}">
       </video>
     </div>
   `;
+  } else {
+    thumbnailListWrapper.innerHTML += `
+    <div class="thumbnail" style="--idx: ${i - 1}">
+      <img src="${projectPreviewData[i].img}" alt=""></img>
+      <video playsinline autoplay muted loop>
+        <source src="${projectPreviewData[i].video}">
+      </video>
+    </div>
+    `;
+  }
 }
-// thumbnailList.innerHTML += `
+//thumbnailList.innerHTML += `
 //   <div class="thumbnail zoom">
 //     <img src="${projectPreviewData[0].img}" alt=""></img>
 //       <video playsinline autoplay muted loop>
@@ -97,50 +108,30 @@ Unmask.innerHTML += `
       </video>
   </div>
 `;
+// var testBtn = document.querySelector
 
-const nextBtn = document.querySelector(".previewNav .nextButton");
+var frameButton;
+frameButton = document.getElementById("buttonFrame");
 var currentIndex = 0;
-nextBtn.addEventListener("click", () => {
-  nextBtn.disabled = true;
-  //thumbnailListWrapper.appendChild(Unmask.children[0]);
-  // $(Unmask.children[0]).appendTo(".previewWrapper");
-  // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
-  // var clone = thumbnailListWrapper.children[0].cloneNode(true);
-  // var clone2 = thumbnailList.children[2];
-
-  // clone.classList.remove("zoom");  
-  // thumbnailListWrapper.appendChild(clone);
-  // $(clone2).appendTo(thumbnailListWrapper);
-  // $(clone).appendTo(thumbnailListWrapper);
-  // $(clone).appendTo(thumbnailList);
-  // $(".thumbnail.zoom").prependTo(".previewWrapper"); 
-  // thumbnailListWrapper.children[1].classList.add("zoom");
-  
-  // var clone3 = thumbnailListWrapper.children[0].cloneNode(true);
-  // clone3.classList.add("zoom");
-  // $(clone3).appendTo(thumbnailList);
-  // $(clone2).appendTo(".previewWrapper");
-  // clone2.classList.remove("zoom");
-
+function ButtonPress() {
+  frameButton.disabled = true;
+  thumbnailListWrapper.children[0].removeAttribute('id');
   $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
   thumbnailListWrapper.children[0].remove();
-  //Unmask.children[0].classList.add("zoom");
   setTimeout(() => {
     Unmask.children[1].classList.add("zoom");
+    frameButton = document.getElementById("buttonFrame");
   }, 10)
-
   setTimeout(() => {
-    // thumbnailListWrapper.children[0].remove();
-    // Unmask.children[0].classList.add("zoom");
-    // $(Unmask.children[0]).appendTo(".previewWrapper");
-    // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
     $(Unmask.children[0]).appendTo(".previewWrapper");
     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style = `--idx: ${thumbnailListWrapper.childElementCount - 1}`;
-    nextBtn.disabled = false;
-  }, 1000)
+    frameButton.disabled = false;
+    frameButton.addEventListener("click", ButtonPress);
+  }, 650)
 
   Unmask.children[0].style = `--idx: 0`;
+  thumbnailListWrapper.children[0].id = `buttonFrame`;
 
   for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
     thumbnailListWrapper.children[i].style = `--idx: ${i}`;
@@ -155,4 +146,68 @@ nextBtn.addEventListener("click", () => {
   previewIntro.children[currentIndex].classList.add("active");
   previewNumber.children[currentIndex].classList.add("active");
   previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
-});
+};
+
+frameButton.addEventListener("click", ButtonPress);
+
+// const nextBtn = document.querySelector(".previewNav .nextButton");
+// nextBtn.addEventListener("click", () => {
+//   nextBtn.disabled = true;
+//   //thumbnailListWrapper.appendChild(Unmask.children[0]);
+//   // $(Unmask.children[0]).appendTo(".previewWrapper");
+//   // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+//   // var clone = thumbnailListWrapper.children[0].cloneNode(true);
+//   // var clone2 = thumbnailList.children[2];
+
+//   // clone.classList.remove("zoom");  
+//   // thumbnailListWrapper.appendChild(clone);
+//   // $(clone2).appendTo(thumbnailListWrapper);
+//   // $(clone).appendTo(thumbnailListWrapper);
+//   // $(clone).appendTo(thumbnailList);
+//   // $(".thumbnail.zoom").prependTo(".previewWrapper"); 
+//   // thumbnailListWrapper.children[1].classList.add("zoom");
+  
+//   // var clone3 = thumbnailListWrapper.children[0].cloneNode(true);
+//   // clone3.classList.add("zoom");
+//   // $(clone3).appendTo(thumbnailList);
+//   // $(clone2).appendTo(".previewWrapper");
+//   // clone2.classList.remove("zoom");
+
+//   thumbnailListWrapper.children[0].removeAttribute('id');
+//   $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
+//   thumbnailListWrapper.children[0].remove();
+//   //Unmask.children[0].classList.add("zoom");
+//   setTimeout(() => {
+//     Unmask.children[1].classList.add("zoom");
+//   }, 10)
+
+//   setTimeout(() => {
+//     // thumbnailListWrapper.children[0].remove();
+//     // Unmask.children[0].classList.add("zoom");
+//     // $(Unmask.children[0]).appendTo(".previewWrapper");
+//     // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+//     $(Unmask.children[0]).appendTo(".previewWrapper");
+//     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+//     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style = `--idx: ${thumbnailListWrapper.childElementCount - 1}`;
+//     nextBtn.disabled = false;
+//     //thumbnailListWrapper.children[0].id = `buttonFrame`;
+//   }, 1000)
+
+//   Unmask.children[0].style = `--idx: 0`;
+//   thumbnailListWrapper.children[0].id = `buttonFrame`;
+  
+
+//   for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
+//     thumbnailListWrapper.children[i].style = `--idx: ${i}`;
+//   }
+//   if (currentIndex < projectPreviewData.length - 1) {
+//     currentIndex++;
+//   } else currentIndex = 0;
+//   for (let i = 0; i < projectPreviewData.length; i++) {
+//     previewIntro.children[i].classList.remove("active");
+//     previewNumber.children[i].classList.remove("active");
+//   }
+//   previewIntro.children[currentIndex].classList.add("active");
+//   previewNumber.children[currentIndex].classList.add("active");
+//   previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
+// });
