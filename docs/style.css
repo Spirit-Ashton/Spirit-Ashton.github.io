@@ -95,6 +95,7 @@ body .resize-animation-stopper{
   }
   .spacerWO{
     aspect-ratio: 217/13;
+    z-index: 30;
   }
   .DividerContainer{
     top: -5px;
