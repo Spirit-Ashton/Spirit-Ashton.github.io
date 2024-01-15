@@ -137,6 +137,8 @@ function ButtonPress() {
 
   for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
     thumbnailListWrapper.children[i].style = `--idx: ${i}`;
+    // thumbnailListWrapper.children[i].style.transform = `translateX(calc(var(--idx) * (11vw * 1.4)))`;
+    // thumbnailListWrapper.children[i].style.filter = `brightness(500%)`;
   }
   if (currentIndex < projectPreviewData.length - 1) {
     currentIndex++;

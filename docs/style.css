@@ -484,7 +484,7 @@ a:focus{
       border-radius: 15px;
       overflow: hidden;
       transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-      transform: translateX(calc(var(--idx) * (max(23vw, 110px) * 1.4)));
+      transform: translateX(calc(var(--idx) * (max(23vw, 110px) * 1.2)));
       /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
     }
   }
