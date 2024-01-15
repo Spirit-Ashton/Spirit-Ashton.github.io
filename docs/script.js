@@ -42,7 +42,7 @@ const previewIntro = document.querySelector(".previewIntro");
 // const previewNumber = document.querySelector(".previewNumber");
 
 previewIntro.innerHTML = "";
-// previewNumber.innerHTML = "";
+//   previewNumber.innerHTML = "";
 for (let i = 0; i < projectPreviewData.length; i++) {
   previewIntro.innerHTML += `
     <div class="previewTextWrapper">
