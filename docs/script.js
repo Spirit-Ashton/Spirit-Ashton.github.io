@@ -64,6 +64,8 @@ previewIntro.children[0].classList.add("active");
 const thumbnailList = document.querySelector(".previewContent .thumbnailList");
 const Unmask = document.querySelector(".thumbnailList .previewWrapperUnmask")
 const thumbnailListWrapper = document.querySelector(".thumbnailList .previewWrapper");
+// const Unmaskthumbnail = document.querySelector(".thumbnailList .previewWrapperUnmask .thumbnail");
+// const thumbnail = document.querySelector(".thumbnailList .previewWrapper .thumbnail");
 // thumbnailListWrapper.innerHTML += `
 //   <div class="thumbnail zoom">
 //     <img src="${projectPreviewData[0].img}" alt=""></img>
@@ -102,43 +104,63 @@ for (let i = 1; i < projectPreviewData.length; i++) {
 //       </video>
 //   </div>
 // `;
+var frameButton;
+frameButton = document.getElementById("buttonFrame");
+var ZoomCenter = document.querySelector(".previewContainer .CenterElement");
+var ZoomCoords = frameButton.getBoundingClientRect(); 
+var CornerCoords = ZoomCenter.getBoundingClientRect();
+var PosCoordsY = ZoomCoords.top - CornerCoords.top;
+var PosCoordsX = (ZoomCoords.left - CornerCoords.left);
 Unmask.innerHTML += `
-  <div class="thumbnail zoom">
+  <div class="thumbnail zoom" style="--idx:0; transform: translate(-${PosCoordsX}px, -${PosCoordsY}px)">
     <img src="${projectPreviewData[0].img}" alt=""></img>
       <video data-inline-media playsInline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[0].video}">
       </video>
   </div>
 `;
-// var testBtn = document.querySelector
 
-var frameButton;
-frameButton = document.getElementById("buttonFrame");
+
 var currentIndex = 0;
+var animatePos = false;
+
+function CardBGPos() {
+  ZoomCoords = frameButton.getBoundingClientRect();
+  CornerCoords = ZoomCenter.getBoundingClientRect();
+  console.log(ZoomCoords.top, ZoomCoords.right, ZoomCoords.bottom, ZoomCoords.left);
+  PosCoordsY = (ZoomCoords.top - CornerCoords.top);
+  PosCoordsX = (ZoomCoords.left - CornerCoords.left);
+}
 function ButtonPress() {
+  animatePos = true;
+  CardBGPos();
   frameButton.disabled = true;
   thumbnailListWrapper.children[0].removeAttribute('id');
   $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
   thumbnailListWrapper.children[0].remove();
   setTimeout(() => {
     Unmask.children[1].classList.add("zoom");
+    if (window.innerWidth <= 1000) {
+      PosCoordsX = PosCoordsX + (1000 - window.innerWidth);
+    }
+    Unmask.children[1].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
   }, 10)
   setTimeout(() => {
+    Unmask.children[0].style = `--idx: 0`;
     $(Unmask.children[0]).appendTo(".previewWrapper");
     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style = `--idx: ${thumbnailListWrapper.childElementCount - 1}`;
     frameButton = document.getElementById("buttonFrame");
     frameButton.disabled = false;
     frameButton.addEventListener("click", ButtonPress);
+    animatePos = false;
   }, 650)
 
-  Unmask.children[0].style = `--idx: 0`;
+  
   thumbnailListWrapper.children[0].id = `buttonFrame`;
 
   for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
     thumbnailListWrapper.children[i].style = `--idx: ${i}`;
-    // thumbnailListWrapper.children[i].style.transform = `translateX(calc(var(--idx) * (11vw * 1.4)))`;
-    // thumbnailListWrapper.children[i].style.filter = `brightness(500%)`;
   }
   if (currentIndex < projectPreviewData.length - 1) {
     currentIndex++;
@@ -154,67 +176,6 @@ function ButtonPress() {
 
 frameButton.addEventListener("click", ButtonPress);
 
-// const nextBtn = document.querySelector(".previewNav .nextButton");
-// nextBtn.addEventListener("click", () => {
-//   nextBtn.disabled = true;
-//   //thumbnailListWrapper.appendChild(Unmask.children[0]);
-//   // $(Unmask.children[0]).appendTo(".previewWrapper");
-//   // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
-//   // var clone = thumbnailListWrapper.children[0].cloneNode(true);
-//   // var clone2 = thumbnailList.children[2];
-
-//   // clone.classList.remove("zoom");  
-//   // thumbnailListWrapper.appendChild(clone);
-//   // $(clone2).appendTo(thumbnailListWrapper);
-//   // $(clone).appendTo(thumbnailListWrapper);
-//   // $(clone).appendTo(thumbnailList);
-//   // $(".thumbnail.zoom").prependTo(".previewWrapper"); 
-//   // thumbnailListWrapper.children[1].classList.add("zoom");
-  
-//   // var clone3 = thumbnailListWrapper.children[0].cloneNode(true);
-//   // clone3.classList.add("zoom");
-//   // $(clone3).appendTo(thumbnailList);
-//   // $(clone2).appendTo(".previewWrapper");
-//   // clone2.classList.remove("zoom");
-
-//   thumbnailListWrapper.children[0].removeAttribute('id');
-//   $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
-//   thumbnailListWrapper.children[0].remove();
-//   //Unmask.children[0].classList.add("zoom");
-//   setTimeout(() => {
-//     Unmask.children[1].classList.add("zoom");
-//   }, 10)
-
-//   setTimeout(() => {
-//     // thumbnailListWrapper.children[0].remove();
-//     // Unmask.children[0].classList.add("zoom");
-//     // $(Unmask.children[0]).appendTo(".previewWrapper");
-//     // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
-//     $(Unmask.children[0]).appendTo(".previewWrapper");
-//     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
-//     thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style = `--idx: ${thumbnailListWrapper.childElementCount - 1}`;
-//     nextBtn.disabled = false;
-//     //thumbnailListWrapper.children[0].id = `buttonFrame`;
-//   }, 1000)
-
-//   Unmask.children[0].style = `--idx: 0`;
-//   thumbnailListWrapper.children[0].id = `buttonFrame`;
-  
-
-//   for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
-//     thumbnailListWrapper.children[i].style = `--idx: ${i}`;
-//   }
-//   if (currentIndex < projectPreviewData.length - 1) {
-//     currentIndex++;
-//   } else currentIndex = 0;
-//   for (let i = 0; i < projectPreviewData.length; i++) {
-//     previewIntro.children[i].classList.remove("active");
-//     previewNumber.children[i].classList.remove("active");
-//   }
-//   previewIntro.children[currentIndex].classList.add("active");
-//   previewNumber.children[currentIndex].classList.add("active");
-//   previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
-// });
 var t
 window.onresize = () => {
     resizing(this, this.innerWidth, this.innerHeight) //1
@@ -222,8 +183,29 @@ window.onresize = () => {
     clearTimeout(t); t = setTimeout(() => { t = undefined; resEnded() }, 500) //3
 }
 
+var CardBGOffset = 0;
+window.onload = windowCheck();
+
+function windowCheck() {
+  CardBGPos();
+  if (this.innerWidth <= 1000) {
+    PosCoordsX = PosCoordsX + (1000 - this.innerWidth);
+  }
+  Unmask.children[0].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
+  Unmask.children[0].style.transition = `0s`;
+}
+
 function resizing(target, w, h) {
-    console.log(`Youre resizing: width ${w} height ${h}`)
+    console.log(`Youre resizing: width ${w} height ${h}`);
+    CardBGPos();
+    if (w <= 1000) {
+      PosCoordsX = PosCoordsX + (1000 - w);
+    }
+    Unmask.children[0].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
+    Unmask.children[0].style.transition = `0s`;
+    for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
+      thumbnailListWrapper.children[i].style.transition = `0s`;
+    }
 }    
 function resStarted() { 
     document.body.classList.add("resize-animation-stopper");
@@ -232,4 +214,9 @@ function resStarted() {
 function resEnded() { 
     document.body.classList.remove("resize-animation-stopper");
     console.log('Resize Ended') 
+    Unmask.children[0].style.removeProperty("transition");
+    Unmask.style.removeProperty("transition");
+    for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
+      thumbnailListWrapper.children[i].style.removeProperty("transition");
+    }
 }
