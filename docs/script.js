@@ -39,10 +39,10 @@ var projectPreviewData = [
 ];
 
 const previewIntro = document.querySelector(".previewIntro");
-const previewNumber = document.querySelector(".previewNumber");
+// const previewNumber = document.querySelector(".previewNumber");
 
 previewIntro.innerHTML = "";
-previewNumber.innerHTML = "";
+// previewNumber.innerHTML = "";
 for (let i = 0; i < projectPreviewData.length; i++) {
   previewIntro.innerHTML += `
     <div class="previewTextWrapper">
@@ -55,11 +55,11 @@ for (let i = 0; i < projectPreviewData.length; i++) {
     </div>
   `;
 
-  previewNumber.innerHTML += `<h2>0${i + 1}<h2>`
+  // previewNumber.innerHTML += `<h2>0${i + 1}<h2>`
 }
 
 previewIntro.children[0].classList.add("active");
-previewNumber.children[0].classList.add("active");
+// previewNumber.children[0].classList.add("active");
 
 const thumbnailList = document.querySelector(".previewContent .thumbnailList");
 const Unmask = document.querySelector(".thumbnailList .previewWrapperUnmask")
@@ -116,10 +116,6 @@ var frameButton;
 frameButton = document.getElementById("buttonFrame");
 var currentIndex = 0;
 function ButtonPress() {
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-
-  console.log(`The viewport's width is ${width} and the height is ${height}.`);
   frameButton.disabled = true;
   thumbnailListWrapper.children[0].removeAttribute('id');
   $(thumbnailListWrapper.children[0].cloneNode(true)).appendTo(Unmask);
@@ -147,11 +143,11 @@ function ButtonPress() {
   } else currentIndex = 0;
   for (let i = 0; i < projectPreviewData.length; i++) {
     previewIntro.children[i].classList.remove("active");
-    previewNumber.children[i].classList.remove("active");
+    // previewNumber.children[i].classList.remove("active");
   }
   previewIntro.children[currentIndex].classList.add("active");
-  previewNumber.children[currentIndex].classList.add("active");
-  previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
+  // previewNumber.children[currentIndex].classList.add("active");
+  // previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
 };
 
 frameButton.addEventListener("click", ButtonPress);
