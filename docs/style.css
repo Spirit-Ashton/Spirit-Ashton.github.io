@@ -446,10 +446,10 @@ a:focus{
     .previewContainer .previewContent{
       flex-direction: column;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-around;
       display: flex;
-      margin-top: 0;
-      min-height: calc(100vw * 1.2);
+      margin-top: 5em;
+      min-height: max(calc(100vw * 0.8), 600px);
     }
     .previewContainer .previewContent .thumbnailList{
       top: 0;
