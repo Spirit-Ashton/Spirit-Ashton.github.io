@@ -431,9 +431,15 @@ a:focus{
     transform: translateX(calc(var(--idx) * (11vw * 1.4)));
     /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
   }
-  #buttonFrame:hover{
+  /* #buttonFrame:hover{
     transition-duration: 0.4;
     transform: scale(1.07, 1.07);
+    cursor: pointer;
+  } */
+  .thumbnailList .previewWrapper .thumbnail:hover{
+    transition-duration: 0.4;
+    transform-origin: center;
+    transform: scale(1.07, 1.07) translateX(calc(var(--idx) * (11vw * 1.4) - (6.25% * var(--idx)) * 1.5));
     cursor: pointer;
   }
   /* .thumbnailList .previewWrapperUnmask .thumbnail.zoom{
@@ -455,6 +461,7 @@ a:focus{
     /* transform: translateX(-450px); */
     filter: brightness(40%);
     box-shadow: none;
+    /* transform: translateX(calc(var(--idx) * (11vw * 1.4))); */
   }
   @media only screen and (max-width: 800px) {
     .previewContainer .previewContent{
@@ -474,6 +481,7 @@ a:focus{
       width: 100%;
       height: max(calc(23vw + 4em), calc(110px + 2em));
     }
+
     .previewContent .thumbnailList .previewWrapperUnmask{
       width: 100%;
       height: max(calc(23vw + 4em), calc(110px + 2em));
@@ -500,6 +508,12 @@ a:focus{
       transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
       transform: translateX(calc(var(--idx) * (max(23vw, 110px) * 1.2)));
       /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
+    }
+    .thumbnailList .previewWrapper .thumbnail:hover{
+      transition-duration: 0.4;
+      transform-origin: center;
+      transform: scale(1.07, 1.07) translateX(calc(var(--idx) * (max(23vw, 110px) * 1.2) - (6.25% * var(--idx)) * 1.5));
+      cursor: pointer;
     }
     .thumbnailList .previewWrapperUnmask .thumbnail{
       position: absolute;
