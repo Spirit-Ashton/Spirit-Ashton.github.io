@@ -463,14 +463,16 @@ a:focus{
     box-shadow: none;
     /* transform: translateX(calc(var(--idx) * (11vw * 1.4))); */
   }
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1000px) {
     .previewContainer .previewContent{
       flex-direction: column;
       align-items: center;
-      justify-content: space-around;
+      /* justify-content: space-around; */
+      justify-content: center;
+      margin-top: 5vw;
       display: flex;
-      margin-top: 5em;
-      min-height: max(calc(100vw * 0.8), 600px);
+      /* margin-top: min(5em, 2svh); */
+      min-height: max(calc(100vw * 0.8), 560px);
     }
     .previewContainer .previewContent .thumbnailList{
       top: 0;
@@ -479,12 +481,12 @@ a:focus{
     }
     .previewContent .thumbnailList .previewWrapper{
       width: 100%;
-      height: max(calc(23vw + 4em), calc(110px + 2em));
+      height: max(calc(23vw + 4em), calc(140px + 2em));
     }
 
     .previewContent .thumbnailList .previewWrapperUnmask{
       width: 100%;
-      height: max(calc(23vw + 4em), calc(110px + 2em));
+      height: max(calc(23vw + 4em), calc(140px + 2em));
     }
     .previewContainer .previewIntro{
       margin-left: 0;
@@ -501,18 +503,18 @@ a:focus{
       /* left: calc(100% - 230px); */
       margin: 2em;
       /* margin: 0 2em 2em 2em; */
-      width: max(23vw, 110px);
+      width: max(23vw, 140px);
       aspect-ratio: 1/1;  
       border-radius: 15px;
       overflow: hidden;
       transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-      transform: translateX(calc(var(--idx) * (max(23vw, 110px) * 1.2)));
+      transform: translateX(calc(var(--idx) * (max(23vw, 140px) * 1.2)));
       /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
     }
     .thumbnailList .previewWrapper .thumbnail:hover{
       transition-duration: 0.4;
       transform-origin: center;
-      transform: scale(1.07, 1.07) translateX(calc(var(--idx) * (max(23vw, 110px) * 1.2) - (6.25% * var(--idx)) * 1.5));
+      transform: scale(1.07, 1.07) translateX(calc(var(--idx) * (max(23vw, 140px) * 1.2) - (6.25% * var(--idx)) * 1.5));
       cursor: pointer;
     }
     .thumbnailList .previewWrapperUnmask .thumbnail{
@@ -526,7 +528,7 @@ a:focus{
       border-radius: 15px;
       overflow: hidden;
       transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-      transform: translateX(calc(var(--idx) * (max(23vw, 110px) * 1.2)));
+      transform: translateX(calc(var(--idx) * (max(23vw, 140px) * 1.2)));
       /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
     }
   }

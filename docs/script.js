@@ -339,24 +339,32 @@ function CardPress(interval) {
       ResetCards();
       DisableCardPress = false;
     }, 650)
-
-    setTimeout(() => {
-
-    })
     
     // thumbnailListWrapper.children[0].id = `buttonFrame`;
 
     for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
       thumbnailListWrapper.children[i].style = `--idx: ${i}`;
     }
-    if (currentIndex < projectPreviewData.length - 1) {
-      currentIndex++;
-    } else currentIndex = 0;
-    for (let i = 0; i < projectPreviewData.length; i++) {
-      previewIntro.children[i].classList.remove("active");
-      // previewNumber.children[i].classList.remove("active");
-    }
-    previewIntro.children[currentIndex].classList.add("active");
+    // if (currentIndex < projectPreviewData.length - 1) {
+    //   currentIndex++;
+    // } else currentIndex = 0;
+    // for (let i = 0; i < projectPreviewData.length; i++) {
+    //   previewIntro.children[i].classList.remove("active");
+    //   // previewNumber.children[i].classList.remove("active");
+    // }
+    // previewIntro.children[currentIndex].classList.add("active");
+
+    $(previewIntro.children[0]).appendTo(".previewIntro");
+    $(previewIntro.children[interval]).prependTo(".previewIntro");
+    setTimeout(() => {
+      previewIntro.children[previewIntro.children.length - 1].classList.remove("active");
+      previewIntro.children[0].classList.add("active");
+    }, 0);
+
+    // setTimeout(() => {
+    //   $(previewIntro.children[0]).appendTo(".previewIntro");  
+    //   $(previewIntro.children[interval]).prependTo(".previewIntro");
+    // }, 650);
     // previewNumber.children[currentIndex].classList.add("active");
     // previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
     
