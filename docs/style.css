@@ -292,7 +292,7 @@ a:focus{
   /* display: none; */
   top: 0%;
   left: 0%;
-  opacity: 0;
+  opacity: 1;
   z-index: 50;
   width: 1em;
   /* transform: translate(0%,0%); */
@@ -391,9 +391,38 @@ a:focus{
     z-index: 10;  
     width: 44vw;
     /* margin: 2em; */
+    /* background-color: rebeccapurple; */
     height: 300px;
-    -webkit-mask: linear-gradient(90deg, white 80%, transparent);
-    mask: linear-gradient(90deg, white 80%, transparent);  
+    -webkit-mask: linear-gradient(90deg, transparent, white 80%, transparent);
+    mask: linear-gradient(90deg,transparent, white 10% 90%, transparent);  
+  }
+  .previewWrapper .scrollWrapper{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    /* background-color: greenyellow; */
+    /* animation: scrollframe linear 4s infinite forwards;
+    -webkit-animation: scrollframe linear 4s infinite forwards; */
+  }
+  @-webkit-keyframes scrollframe{
+    from {
+      -webkit-transform: translateX(calc(var(--startInt) * -1 * (11vw + (0.2 * 11vw))));
+      transform: translateX(calc(var(--startInt) * -1 * (11vw + (0.2 * 11vw))));
+    }
+    to {
+      -webkit-transform: translateX(calc(var(--endInt) * -1 * (11vw + (0.2 * 11vw))));
+      transform: translateX(calc(var(--endInt) * -1 * (11vw + (0.2 * 11vw))));
+    }
+  }
+  @keyframes scrollframe{
+    from {
+      -webkit-transform: translateX(calc(var(--startInt) * -1 * (11vw + (0.2 * 11vw))));
+      transform: translateX(calc(var(--startInt) * -1 * (11vw + (0.2 * 11vw))));
+    }
+    to {
+      -webkit-transform: translateX(calc(var(--endInt) * -1 * (11vw + (0.2 * 11vw))));
+      transform: translateX(calc(var(--endInt) * -1 * (11vw + (0.2 * 11vw))));
+    }
   }
   .thumbnailList .previewWrapperUnmask{
     position: absolute;
@@ -406,7 +435,8 @@ a:focus{
     position: absolute;
     top: 0%;
     /* left: calc(100% - 230px); */
-    margin: 2em;
+    margin: 2em calc(0.2 * 11vw);
+    /* gap: 2em; */
     /* margin: 0 2em 2em 2em; */
     width: 11vw;
     height: auto;
@@ -414,21 +444,24 @@ a:focus{
     border-radius: 15px;
     overflow: hidden;
     transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-    transform: translateX(calc(var(--idx) * (11vw * 1.4)));
+    transform: translateX(calc(var(--idx) * (11vw * 1.2)));
     /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
   }
+
+
+
   .thumbnailList .previewWrapperUnmask .thumbnail{
     position: absolute;
     top: 0%;
     /* left: calc(100% - 230px); */
-    margin: 2em;
+    margin: 2em calc(0.2 * 11vw);
     width: 11vw;
     height: auto;
     aspect-ratio: 1/1;  
     border-radius: 15px;
     overflow: hidden;
     transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-    transform: translateX(calc(var(--idx) * (11vw * 1.4)));
+    transform: translateX(calc(var(--idx) * (11vw * 1.2)));
     /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
   }
   /* #buttonFrame:hover{
@@ -439,8 +472,17 @@ a:focus{
   .thumbnailList .previewWrapper .thumbnail:hover{
     transition-duration: 0.4;
     transform-origin: center;
-    transform: scale(1.07, 1.07) translateX(calc(var(--idx) * (11vw * 1.4) - (6.25% * var(--idx)) * 1.5));
+    transform: scale(1.07, 1.07) translateX(calc(var(--idx) * (11vw * 1.2) - (6.25% * var(--idx)) * 1.5));
     cursor: pointer;
+  }
+  .thumbnailList .previewWrapper .thumbnail.Hidden{
+    opacity: 0;
+    z-index: -100;
+  }
+  .thumbnailList .previewWrapper .thumbnail.Hidden:hover{
+    transition: none;
+    transform: none;
+    cursor: auto;
   }
   /* .thumbnailList .previewWrapperUnmask .thumbnail.zoom{
     width: 120vw;
@@ -501,7 +543,7 @@ a:focus{
       position: absolute;
       top: 0%;
       /* left: calc(100% - 230px); */
-      margin: 2em;
+      margin: 2em calc(0.2 * max(23vw, 140px));
       /* margin: 0 2em 2em 2em; */
       width: max(23vw, 140px);
       aspect-ratio: 1/1;  
@@ -510,6 +552,26 @@ a:focus{
       transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
       transform: translateX(calc(var(--idx) * (max(23vw, 140px) * 1.2)));
       /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
+    }
+    @-webkit-keyframes scrollframe{
+      from {
+        -webkit-transform: translateX(calc(var(--startInt) * -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+        transform: translateX(calc(var(--startInt)* -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+      }
+      to {
+        -webkit-transform: translateX(calc(var(--endInt) * -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+        transform: translateX(calc(var(--endInt) * -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+      }
+    }
+    @keyframes scrollframe{
+      from {
+        -webkit-transform: translateX(calc(var(--startInt) * -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+        transform: translateX(calc(var(--startInt)* -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+      }
+      to {
+        -webkit-transform: translateX(calc(var(--endInt) * -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+        transform: translateX(calc(var(--endInt) * -1 * (max(23vw, 140px) + (max(23vw, 140px) * 0.2))));
+      }
     }
     .thumbnailList .previewWrapper .thumbnail:hover{
       transition-duration: 0.4;
@@ -521,7 +583,7 @@ a:focus{
       position: absolute;
       top: 0%;
       /* left: calc(100% - 230px); */
-      margin: 2em;
+      margin: 2em calc(0.2 * max(23vw, 140px));
       /* margin: 0 2em 2em 2em; */
       width: max(23vw, 110px);
       aspect-ratio: 1/1;  
