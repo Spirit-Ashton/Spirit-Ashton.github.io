@@ -454,6 +454,7 @@ a:focus{
     border-radius: 50px;
     margin-bottom: 20px;
     margin-top: 20px;
+    display: none;
   }
   .previewContent .thumbnailList{
     top: -2em;
