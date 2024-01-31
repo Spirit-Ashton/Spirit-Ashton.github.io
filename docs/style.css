@@ -4,7 +4,9 @@
   --Accent_Colour: #FFFFF1;
   /* --Primary_Colour: #E3D5BB; */
   /* --Primary_Colour: #DDFFF7; */
-  --Primary_Colour: #0F7173;
+  /* --Primary_Colour: #0F7173; */
+  --Primary_Colour: #0A3E38;
+  --Secondary_Colour: #157A6E;
 }
 @font-face {
   font-family: 'Mona Sans';
@@ -284,18 +286,19 @@ a:focus{
   padding: 1em 1.5em;
   border-radius: calc(1em + 16px);
   margin-bottom: 64px;
-  background-color: var(--Accent_Colour);
+  background-color: var(--Secondary_Colour);
   transition: 0.4s;
   opacity: 1;
 }
 .ContactButton:hover{
   cursor: pointer;
-  opacity: 0.8;
+  /* opacity: 0.8; */
+  filter: brightness(150%);
   /* filter: hue-rotate(90deg); */
 }
 .ContactButton .ButtonText{
   cursor: pointer;
-  font-weight: 750;
+  font-weight: 650;
   font-size: 1em;
   font-family: 'Hubot Sans';
   letter-spacing: -0.2px;
@@ -715,11 +718,81 @@ a:focus{
   .previewNumber h2.active{
     transform: unset;
   }
+
+.CVMainContainer{
+  width: min(600px, 70vw);
+  height: fit-content;
+  margin: 6em 0 8px 0;
+}
+.CVMain h2{
+    font-weight: 400;
+    font-size: 3em;
+    color: var(--Accent_Colour);
+    text-align: center;
+}
+.CVContainer{
+  width: min(600px, 70vw);
+  height: fit-content;
+  margin-bottom: 64px;
+}
+.CoreValues{
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: var(--Accent_Colour);
+    text-align: center;
+}
+.ActionContainer{
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 64px;
+}
+.CVButton{
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--Base_Colour);
+  border-radius: calc(1em + 16px);
+  padding: 1em 2em;
+  margin: 0 16px;
+  transition: 0.4s;
+}
+.CVButton:hover{
+  cursor: pointer;
+  filter: brightness(150%);
+}
+.PSButton{
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--Secondary_Colour);
+  border-radius: calc(1em + 16px);
+  padding: 1em 2em;
+  margin: 0 16px;
+  transition: 0.4s;
+}
+.PSButton:hover{
+  cursor: pointer;
+  filter: brightness(150%);
+}
+.CV{
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--Accent_Colour);
+  text-align: center;
+  font-family: 'Hubot Sans';
+}
+.PS{
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--Base_Colour);
+  text-align: center;
+  font-family: 'Hubot Sans';
+}
 .ProjectsBG{
     /* background: rgba(18, 9, 50, 1);     */
     background: var(--Base_Colour);
 }
-
 .CRContainer{
   width: fit-content;
   height: fit-content;
@@ -735,6 +808,10 @@ a:focus{
 .PrimaryBG{
     /* background: #fff5fc; */
     background-color: var(--Primary_Colour);
+}
+.SecondaryBG{
+  /* background: #fff5fc; */
+  background-color: var(--Secondary_Colour);
 }
 .BaseBG{
     background: #191e21;
