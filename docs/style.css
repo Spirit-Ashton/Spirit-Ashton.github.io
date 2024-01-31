@@ -380,7 +380,7 @@ a:focus{
 }
   .previewContainer .previewIntro{
     position: relative;
-    width: 400px;   
+    width: min(400px , 85vw);   
     height: 160px;
     z-index: 20;
     margin-bottom: 5em;
