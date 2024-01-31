@@ -7,6 +7,7 @@
   /* --Primary_Colour: #0F7173; */
   --Primary_Colour: #0A3E38;
   --Secondary_Colour: #157A6E;
+  scroll-behavior: smooth;
 }
 @font-face {
   font-family: 'Mona Sans';
@@ -296,7 +297,7 @@ a:focus{
   filter: brightness(150%);
   /* filter: hue-rotate(90deg); */
 }
-.ContactButton .ButtonText{
+.ContactButton .ButtonText a{
   cursor: pointer;
   font-weight: 650;
   font-size: 1em;
@@ -304,6 +305,8 @@ a:focus{
   letter-spacing: -0.2px;
   color: var(--Base_Colour);
   text-align: center;
+  text-decoration: none;
+  outline: none;
 }
 @media only screen and (max-width: 650px) {
   /* .IntroductionBox{
@@ -793,11 +796,38 @@ a:focus{
     /* background: rgba(18, 9, 50, 1);     */
     background: var(--Base_Colour);
 }
+.ContactContainer{
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 152px;
+  margin-top: 152px;
+}
+.ContactText{
+  font-weight: 400;
+  font-size: 2em;
+  color: var(--Accent_Colour);
+  text-align: center;
+}
+.ContactText a{
+  font-weight: 200;
+  font-size: 1em;
+  color: var(--Accent_Colour);
+  text-align: center;
+  font-family: 'Hubot Sans';
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+.ContactText a:hover{
+  opacity: 0.8;
+}
 .CRContainer{
   width: fit-content;
   height: fit-content;
   display: flex;
-  margin: 2em 0;
+  margin: 0 0 2em 0;
 }
 .Copyright{
     font-weight: 400;
