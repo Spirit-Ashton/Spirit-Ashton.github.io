@@ -167,6 +167,7 @@ targetProxy.CardDist = CardDist;
 setInterval(()=> {
   CardDist = Cards[0].getBoundingClientRect().right - thumbnailMain.getBoundingClientRect().left;
   targetProxy.CardDist = CardDist;
+  ResetCards();
 }, 1000);
 
 function CardButtons(){
@@ -330,6 +331,7 @@ let BackupInterval = 0;
 
 function findCard(interval, callback) {
   BackupInterval = interval;
+  console.log(interval);
   for (let i=0; i < Cards.length; i++) {
     if (parseInt(thumbnailListWrapper.children[i].style.getPropertyValue(`--idx`)) == interval) {
       thumbnailListWrapper.children[i].removeAttribute('id'); 
@@ -368,8 +370,6 @@ function requeueBG() {
       ResetCards();
       DisableCardPress = false;
     }, 750);
-  } else {
-    findCard(BackupInterval, requeueBG);
   }
 }
 
