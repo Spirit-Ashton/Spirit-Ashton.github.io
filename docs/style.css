@@ -110,7 +110,7 @@ body .resize-animation-stopper{
   transform: scale(-1,-1);
 }
 .TopBanner{
-   position: absolute;
+   position: relative;
    z-index: 3;
    display: flex;
    justify-content: flex-start;
@@ -219,8 +219,8 @@ a:focus{
     background: transparent;
     z-index: 1;
     width: 100%;
-    margin-top: 2em;
-    padding-bottom: 32px;
+    margin-top: 10em;
+    margin-bottom: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -233,7 +233,7 @@ a:focus{
 .MainText{
     font-size: min(2rem, 5vw);
     z-index: 1;
-    padding: 5em 0.5em 0;
+    padding: 0 0.5em 0;
     letter-spacing: -1.3px;
     position: relative;
     /*transform: translateY(100%);
@@ -269,8 +269,7 @@ a:focus{
     min-width: 200px;
     max-width: 65vw;
     display: flex;
-    padding: 0 0 5em;
-    margin-bottom: 2em;
+    margin-bottom: 64px;
 }
 .IntroductionText{
     font-weight: 400;
@@ -283,7 +282,7 @@ a:focus{
   display: flex;
   padding: 1em 1.5em;
   border-radius: calc(1em + 16px);
-  margin-bottom: 2em;
+  margin-bottom: 64px;
   background-color: var(--Accent_Colour);
   transition: 0.2s;
   opacity: 0.8;
@@ -301,10 +300,13 @@ a:focus{
   color: var(--Base_Colour);
   text-align: center;
 }
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 650px) {
   /* .IntroductionBox{
     display: none;
   } */
+  .TopBanner ul{
+    display: none;
+  }
 }
 .ProjectsBanner{
     position: absolute;
