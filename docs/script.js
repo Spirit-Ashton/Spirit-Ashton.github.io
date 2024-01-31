@@ -35,25 +35,11 @@ var projectPreviewData = [
     description: "Another Logo created for a TV Series/Brand",
   },
   {
-    img: "./Feature Files/ExtraProjects/pending.svg",
+    img: "./Feature Files/ThisWebsite/Screenshot (286).png",
     // video: "./Test WebBG Vid.webm",
-    title: "Pending...",
-    type: "Pending...",
-    description: "Pending...",
-  },
-  {
-    img: "./Feature Files/ExtraProjects/pending.svg",
-    // video: "./Test WebBG Vid.webm",
-    title: "Pending...",
-    type: "Pending...",
-    description: "Pending...",
-  },
-  {
-    img: "./Feature Files/ExtraProjects/pending.svg",
-    // video: "./Test WebBG Vid.webm",
-    title: "Pending...",
-    type: "Pending...",
-    description: "Pending...",
+    title: "This Website!",
+    type: "Web Development",
+    description: "Even Creating this website was a Project I had put myself to.",
   },
 ];
 
@@ -171,47 +157,6 @@ setInterval(()=> {
   targetProxy.CardDist = CardDist;
 }, 1000);
 
-// var ScrollLength = Cards[0].getBoundingClientRect().width + parseFloat(window.getComputedStyle(Cards[0]).marginLeft);
-
-// function FirstScroll(){ 
-//   ScrollLength = Cards[0].getBoundingClientRect().width + parseFloat(window.getComputedStyle(Cards[0]).marginLeft);
-//   $(thumbnailListWrapper).animate({left: `-=${ScrollLength}px`}, 6000 , "linear", Scrolling);
-// }
-// function Scrolling(){ 
-//   ScrollLength = Cards[0].getBoundingClientRect().width + parseFloat(window.getComputedStyle(Cards[0]).marginLeft);
-//   $(thumbnailListWrapper).animate({left: `-=${ScrollLength}px`}, 6000 , "linear", Scrolling);
-// }
-// $( document ).ready(function() {
-//   FirstScroll();
-// });
-
-
-// var ScrollTime = 1;
-// setInterval( ()=> {
-//   CardPasses = CardPasses + 1;
-//   thumbnailListWrapper.style.animation = `scrollframe ${ScrollTime * (CardPasses + 1)}s linear forwards 1`;
-//   thumbnailListWrapper.style.setProperty(`--endInt`, CardPasses + 1);
-// }, 500)
-// setInterval( () =>{
-//   $(Cards[0]).appendTo(".previewWrapper .scrollWrapper");
-//   Cards[thumbnailListWrapper.childElementCount - 1].style.setProperty(`--idx`, parseInt(Cards[thumbnailListWrapper.childElementCount - 2].style.getPropertyValue(`--idx`)) + 1);
-// },4000)
-
-// thumbnailListWrapper.addEventListener(`animationend`, () => {
-//   console.log(`End  ${CardPasses}`);
-//   CardPasses = CardPasses + 1;
-//   thumbnailListWrapper.style.animation = `scrollframe 4s linear forwards ${CardPasses + 1}`;
-//   thumbnailListWrapper.style.setProperty(`--startInt`, CardPasses );
-//   thumbnailListWrapper.style.setProperty(`--endInt`, CardPasses + 1);
-//   $(Cards[0]).appendTo(".previewWrapper .scrollWrapper");
-//   Cards[thumbnailListWrapper.childElementCount - 1].style.setProperty(`--idx`, parseInt(Cards[thumbnailListWrapper.childElementCount - 2].style.getPropertyValue(`--idx`)) + 1);
-//   console.log(`Event Ended`);
-// });
-
-// thumbnailListWrapper.addEventListener(`animationstart`, () => {
-//   console.log(`Start ${CardPasses}`);
-// });
-
 function CardButtons(){
   for (let i = 0; i < Cards.length; i++) {
     // Cards[i].addEventListener("click", () => {CardPress(i)});
@@ -237,15 +182,17 @@ var ZoomCoords = ZoomFocus.getBoundingClientRect();
 var CornerCoords = ZoomCenter.getBoundingClientRect();
 var PosCoordsY = ZoomCoords.y - CornerCoords.y;
 var PosCoordsX = (ZoomCoords.x - CornerCoords.x);
+var PosCoordsX = 0;
 Unmask.innerHTML += `
-  <div class="thumbnail zoom" style="--idx:0; --dataidx:0 ;transform: translate(-${PosCoordsX}px, -${PosCoordsY}px)">
+  <div class="thumbnail zoom" style="--idx:0; --dataidx:0 ; transform: translate(0px , 0px); transition: 0s">
     <img src="${projectPreviewData[0].img}" alt=""></img>
       <video data-inline-media playsInline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[0].video}">
       </video>
   </div>
 `;
-
+// var PosCoordsX = Unmask.children[0].getBoundingClientRect().x - CornerCoords.x;
+Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
 
 var currentIndex = 0;
 
@@ -256,7 +203,9 @@ function CardBGPos() {
   CornerCoords = ZoomCenter.getBoundingClientRect();
     
   PosCoordsY = (ZoomCoords.y - CornerCoords.y);
-  PosCoordsX = (ZoomCoords.x - CornerCoords.x);
+  // PosCoordsX = (ZoomCoords.x - CornerCoords.x);
+  PosCoordsX = 0;
+  // console.log(PosCoordsX);
 }
 // function ButtonPress() {
 //   CardBGPos();
@@ -374,7 +323,7 @@ function findCard(interval, callback) {
         if (window.innerWidth <= 1000) {
           PosCoordsX = PosCoordsX + (1000 - window.innerWidth);
         }
-        Unmask.children[1].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
+        Unmask.children[1].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
       }, 10);
     }
   };
@@ -436,7 +385,7 @@ var t
 window.onresize = () => {
     resizing(this, this.innerWidth, this.innerHeight) //1
     if (typeof t == 'undefined') resStarted() //2
-    clearTimeout(t); t = setTimeout(() => { t = undefined; resEnded() }, 300) //3
+    clearTimeout(t); t = setTimeout(() => { t = undefined; resEnded() }, 500) //3
 }
 
 var CardBGOffset = 0;
@@ -446,12 +395,12 @@ window.onload = CardButtons();
 
 
 function windowCheck() {
-  CardBGPos();
   if (this.innerWidth <= 1000) {
+    CardBGPos();
     PosCoordsX = PosCoordsX + (1000 - this.innerWidth);
+    Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
+    Unmask.children[0].style.transition = `0s`;
   }
-  Unmask.children[0].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
-  Unmask.children[0].style.transition = `0s`;
 }
 
 function resizing(target, w, h) {
@@ -460,7 +409,7 @@ function resizing(target, w, h) {
     if (w <= 1000) {
       PosCoordsX = PosCoordsX + (1000 - w);
     }
-    Unmask.children[0].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
+    Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
     Unmask.children[0].style.transition = `0s`;
     // console.log(Unmask.children[0].getBoundingClientRect().x);
     for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
@@ -495,3 +444,4 @@ document.addEventListener("visibilitychange", () => {
     thumbnailListWrapper.style.animationPlayState = `running`;
   }
 });
+
