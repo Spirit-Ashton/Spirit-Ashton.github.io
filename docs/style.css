@@ -232,7 +232,7 @@ a:focus{
     100%{ transform: translateY(150%);}
 }
 .MainText{
-    font-size: min(2.2rem, 8vw);
+    font-size: min(2.2rem, 4.7vw);
     z-index: 1;
     padding: 0 0.5em 0;
     letter-spacing: -1.3px;
@@ -306,6 +306,9 @@ a:focus{
   /* .IntroductionBox{
     display: none;
   } */
+  .MainTextHolder{
+    margin-top: 1em;
+  }
   .TopBanner ul{
     display: none;
   }
