@@ -4,21 +4,27 @@ var projectPreviewData = [
     video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
     title: "Fruit Star!",
     type: "Platformer Game",
-    description: "This is a simple platformer, fruits go yum!",
+    description: "A Basic 2D Platformer Project focused on stability.",
+    offsetX: 100,
+    offsetY: 50,
   },
   {
     img: "./Feature Files/Insionne/Screenshot (282).png",
     // video: "./Test WebBG Vid.webm",
     title: "Insionné",
     type: "Platformer Game",
-    description: "This is a platformer game, blah de blah de blah!",
+    description: "A 2D Platformer Project with complex movement and a custom camera.",
+    offsetX: 100,
+    offsetY: 130,
   },
   {
     img: "./Feature Files/FunkyFarah/Funky Farah.jpg",
     // video: "./Test WebBG Vid.webm",
     title: "Funky Fairy!",
     type: "Logo Design",
-    description: "This is a logo I made. Colours go pop!",
+    description: "A Logo I created with a pop 90s vibe.",
+    offsetX: 280,
+    offsetY: 85,
   },
   {
     img: "./Feature Files/UCLPpt/Screenshot (285).png",
@@ -26,20 +32,26 @@ var projectPreviewData = [
     title: "How do writer's Engage Readers?",
     type: "Powerpoint Animation Challenge",
     description: "This is an animated powerpoint I created as a challenge to animate in powerpoint!",
+    offsetX: 0,
+    offsetY: 120,
   },
   {
     img: "./Feature Files/CrownedStar/Crowned Star Final.png",
     // video: "./Test WebBG Vid.webm",
     title: "Crowned Star",
     type: "Logo Design",
-    description: "Another Logo created for a TV Series/Brand",
+    description: "A Logo I created for a TV Series/Brand",
+    offsetX: 400,
+    offsetY: 100,
   },
   {
     img: "./Feature Files/ThisWebsite/Screenshot (286).png",
     // video: "./Test WebBG Vid.webm",
     title: "This Website!",
     type: "Web Development",
-    description: "Even Creating this website was a Project I had put myself to.",
+    description: "A Full Website developed to show off my other creations and projects.",
+    offsetX: 0,
+    offsetY: 0,
   },
 ];
 
@@ -74,7 +86,7 @@ const thumbnailMain = document.querySelector(".thumbnailList .previewWrapper");
 for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
   if (i == 1){
     thumbnailListWrapper.innerHTML += `
-    <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}" id="Number 0">
+    <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px; --BGoffsetX: ${projectPreviewData[i].offsetX}; --BGoffsetY: ${projectPreviewData[i].offsetY};" id="Number 0">
       <img src="${projectPreviewData[i].img}" alt=""></img>
       <video data-inline-media playsInline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[i].video}">
@@ -83,7 +95,7 @@ for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
   `;
   } else if (i < projectPreviewData.length) {
     thumbnailListWrapper.innerHTML += `
-    <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px;">
+    <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px; --BGoffsetX: ${projectPreviewData[i].offsetX}; --BGoffsetY: ${projectPreviewData[i].offsetY};">
       <img src="${projectPreviewData[i].img}" alt=""></img>
       <video data-inline-media playsInline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[i].video}">
@@ -184,7 +196,7 @@ var PosCoordsY = ZoomCoords.y - CornerCoords.y;
 var PosCoordsX = (ZoomCoords.x - CornerCoords.x);
 var PosCoordsX = 0;
 Unmask.innerHTML += `
-  <div class="thumbnail zoom" style="--idx:0; --dataidx:0 ; transform: translate(0px , 0px); transition: 0s">
+  <div class="thumbnail zoom" style="--idx:0; --dataidx:0; --BGoffsetX: ${projectPreviewData[0].offsetX}; --BGoffsetY: ${projectPreviewData[0].offsetY}; transform: translate(0px , 0px); transition: 0s">
     <img src="${projectPreviewData[0].img}" alt=""></img>
       <video data-inline-media playsInline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[0].video}">
@@ -192,6 +204,10 @@ Unmask.innerHTML += `
   </div>
 `;
 // var PosCoordsX = Unmask.children[0].getBoundingClientRect().x - CornerCoords.x;
+PosCoordsX = PosCoordsX + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetX`));
+PosCoordsY = PosCoordsY + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetY`));
+console.log(PosCoordsX);
+console.log(PosCoordsY);
 Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
 
 var currentIndex = 0;
@@ -310,8 +326,10 @@ function CardBGPos() {
 var DisableCardPress = false;
 var dataVal = 0;
 let FirstId = 0;
+let BackupInterval = 0;
 
 function findCard(interval, callback) {
+  BackupInterval = interval;
   for (let i=0; i < Cards.length; i++) {
     if (parseInt(thumbnailListWrapper.children[i].style.getPropertyValue(`--idx`)) == interval) {
       thumbnailListWrapper.children[i].removeAttribute('id'); 
@@ -323,6 +341,8 @@ function findCard(interval, callback) {
         if (window.innerWidth <= 1000) {
           PosCoordsX = PosCoordsX + (1000 - window.innerWidth);
         }
+        PosCoordsX = PosCoordsX + parseFloat(Unmask.children[1].style.getPropertyValue(`--BGoffsetX`));
+        PosCoordsY = PosCoordsY + parseFloat(Unmask.children[1].style.getPropertyValue(`--BGoffsetY`));
         Unmask.children[1].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
       }, 10);
     }
@@ -345,6 +365,8 @@ function requeueBG() {
       for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
         thumbnailListWrapper.children[i].style.setProperty(`--idx` , FirstId + i ) ;
       }
+    } else {
+      findCard(BackupInterval, requeueBG);
     }
     ResetCards();
     DisableCardPress = false;
@@ -398,6 +420,8 @@ function windowCheck() {
   if (this.innerWidth <= 1000) {
     CardBGPos();
     PosCoordsX = PosCoordsX + (1000 - this.innerWidth);
+    PosCoordsX = PosCoordsX + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetX`));
+    PosCoordsY = PosCoordsY + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetY`));
     Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
     Unmask.children[0].style.transition = `0s`;
   }
@@ -409,6 +433,8 @@ function resizing(target, w, h) {
     if (w <= 1000) {
       PosCoordsX = PosCoordsX + (1000 - w);
     }
+    PosCoordsX = PosCoordsX + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetX`));
+    PosCoordsY = PosCoordsY + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetY`));
     Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
     Unmask.children[0].style.transition = `0s`;
     // console.log(Unmask.children[0].getBoundingClientRect().x);
