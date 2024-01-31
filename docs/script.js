@@ -41,8 +41,8 @@ var projectPreviewData = [
     title: "Crowned Star",
     type: "Logo Design",
     description: "A Logo I created for a TV Series/Brand",
-    offsetX: 400,
-    offsetY: 100,
+    offsetX: 0,
+    offsetY: 80,
   },
   {
     img: "./Feature Files/ThisWebsite/Screenshot (286).png",
@@ -87,8 +87,8 @@ for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
   if (i == 1){
     thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px; --BGoffsetX: ${projectPreviewData[i].offsetX}; --BGoffsetY: ${projectPreviewData[i].offsetY};" id="Number 0">
-      <img src="${projectPreviewData[i].img}" alt=""></img>
-      <video data-inline-media playsInline autoplay muted loop preload="metadata">
+      <img style="pointer-events: none;" src="${projectPreviewData[i].img}" alt=""></img>
+      <video data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
         <source src="${projectPreviewData[i].video}">
       </video>
     </div>
@@ -96,8 +96,8 @@ for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
   } else if (i < projectPreviewData.length) {
     thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px; --BGoffsetX: ${projectPreviewData[i].offsetX}; --BGoffsetY: ${projectPreviewData[i].offsetY};">
-      <img src="${projectPreviewData[i].img}" alt=""></img>
-      <video data-inline-media playsInline autoplay muted loop preload="metadata">
+      <img style="pointer-events: none;" src="${projectPreviewData[i].img}" alt=""></img>
+      <video data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
         <source src="${projectPreviewData[i].video}">
       </video>
     </div>
@@ -197,8 +197,8 @@ var PosCoordsX = (ZoomCoords.x - CornerCoords.x);
 var PosCoordsX = 0;
 Unmask.innerHTML += `
   <div class="thumbnail zoom" style="--idx:0; --dataidx:0; --BGoffsetX: ${projectPreviewData[0].offsetX}; --BGoffsetY: ${projectPreviewData[0].offsetY}; transform: translate(0px , 0px); transition: 0s">
-    <img src="${projectPreviewData[0].img}" alt=""></img>
-      <video data-inline-media playsInline autoplay muted loop preload="metadata">
+    <img style="pointer-events: none;" src="${projectPreviewData[0].img}" alt=""></img>
+      <video data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
         <source src="${projectPreviewData[0].video}">
       </video>
   </div>
@@ -351,26 +351,26 @@ function findCard(interval, callback) {
 }
 
 function requeueBG() {
-  setTimeout(() => {
-    if (Unmask.childElementCount > 1) {
-      Unmask.children[0].style.setProperty(`--idx`, thumbnailListWrapper.childElementCount);
-      Unmask.children[0].style.removeProperty(`transform`);
-      Unmask.children[0].style.removeProperty(`transition`);
-      $(Unmask.children[0]).appendTo(".previewWrapper .scrollWrapper");
-      thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
-       for (let i=0; i < Cards.length; i++) {
-        Cards[i].disabled = false;
-      }
-      FirstId = parseInt(thumbnailListWrapper.children[0].style.getPropertyValue(`--idx`));
-      for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
-        thumbnailListWrapper.children[i].style.setProperty(`--idx` , FirstId + i ) ;
-      }
-    } else {
-      findCard(BackupInterval, requeueBG);
-    }
-    ResetCards();
-    DisableCardPress = false;
-  }, 750);
+  if (Unmask.childElementCount > 1) {
+    setTimeout(() => {
+        Unmask.children[0].style.setProperty(`--idx`, thumbnailListWrapper.childElementCount);
+        Unmask.children[0].style.removeProperty(`transform`);
+        Unmask.children[0].style.removeProperty(`transition`);
+        $(Unmask.children[0]).appendTo(".previewWrapper .scrollWrapper");
+        thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+        for (let i=0; i < Cards.length; i++) {
+          Cards[i].disabled = false;
+        }
+        FirstId = parseInt(thumbnailListWrapper.children[0].style.getPropertyValue(`--idx`));
+        for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
+          thumbnailListWrapper.children[i].style.setProperty(`--idx` , FirstId + i ) ;
+        }
+      ResetCards();
+      DisableCardPress = false;
+    }, 750);
+  } else {
+    findCard(BackupInterval, requeueBG);
+  }
 }
 
 function CardPress(interval , dataid) {
