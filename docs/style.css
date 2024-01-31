@@ -292,7 +292,7 @@ a:focus{
   /* display: none; */
   top: 0%;
   left: 0%;
-  opacity: 1;
+  opacity: 0;
   z-index: 50;
   width: 1em;
   /* transform: translate(0%,0%); */
@@ -458,10 +458,10 @@ a:focus{
     width: 11vw;
     height: auto;
     aspect-ratio: 1/1;  
-    border-radius: 15px;
+    border-radius: 15px;  
     overflow: hidden;
     transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-    transform: translateX(calc(var(--idx) * (11vw * 1.2)));
+    transform: translateX(calc(var(--idx) * (11vw * 1.2) + var(--offset)));
     /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
   }
   /* #buttonFrame:hover{
@@ -590,7 +590,7 @@ a:focus{
       border-radius: 15px;
       overflow: hidden;
       transition: 0.75s cubic-bezier(.21,.1,.29,1.01);
-      transform: translateX(calc(var(--idx) * (max(23vw, 140px) * 1.2)));
+      transform: translateX(calc(var(--idx) * (max(23vw, 140px) * 1.2) + var(--offset)));
       /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); */
     }
   }

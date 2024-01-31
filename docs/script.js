@@ -97,7 +97,7 @@ for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
   `;
   } else if (i < projectPreviewData.length) {
     thumbnailListWrapper.innerHTML += `
-    <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}">
+    <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px;">
       <img src="${projectPreviewData[i].img}" alt=""></img>
       <video data-inline-media playsInline autoplay muted loop preload="metadata">
         <source src="${projectPreviewData[i].video}">
@@ -126,7 +126,7 @@ var CardData = [];
 var CardId = [];
 thumbnailListWrapper.style.setProperty(`--frames`,thumbnailListWrapper.childElementCount);
 var CardPasses = 0;
-var TimeCoef = 4;
+var TimeCoef = 4/7 * (thumbnailListWrapper.childElementCount - 1);
 var LengthMult = 99999;
 // var ScrollLength = Cards[0].getBoundingClientRect().width + parseFloat(window.getComputedStyle(Cards[0]).marginLeft);
 // var ScrollDist = 0;
@@ -142,10 +142,10 @@ thumbnailListWrapper.style.animation = `scrollframe ${TimeCoef * LengthMult}s li
 // });
 
 thumbnailMain.addEventListener('mouseenter' , ()=> {
-  thumbnailListWrapper.style.animationPlayState = `paused`;
+  // thumbnailListWrapper.style.animationPlayState = `paused`;
 });
 thumbnailMain.addEventListener('mouseleave' , ()=> {
-  thumbnailListWrapper.style.animationPlayState = `running`;
+  // thumbnailListWrapper.style.animationPlayState = `running`;
 });
 
 var CardDist = Cards[0].getBoundingClientRect().right - thumbnailMain.getBoundingClientRect().left;
@@ -362,6 +362,46 @@ var DisableCardPress = false;
 var dataVal = 0;
 let FirstId = 0;
 
+function findCard(interval, callback) {
+  for (let i=0; i < Cards.length; i++) {
+    if (parseInt(thumbnailListWrapper.children[i].style.getPropertyValue(`--idx`)) == interval) {
+      thumbnailListWrapper.children[i].removeAttribute('id'); 
+      thumbnailListWrapper.children[i].style.setProperty(`--offset`, `${parseFloat(thumbnailListWrapper.getBoundingClientRect().x) - parseFloat(thumbnailMain.getBoundingClientRect().x)}px`);
+      $(thumbnailListWrapper.children[i].cloneNode(true)).appendTo(Unmask);
+      thumbnailListWrapper.children[i].remove();
+      setTimeout(() => {
+        Unmask.children[1].classList.add("zoom");
+        if (window.innerWidth <= 1000) {
+          PosCoordsX = PosCoordsX + (1000 - window.innerWidth);
+        }
+        Unmask.children[1].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
+      }, 10);
+    }
+  };
+  callback();
+}
+
+function requeueBG() {
+  setTimeout(() => {
+    if (Unmask.childElementCount > 1) {
+      Unmask.children[0].style.setProperty(`--idx`, thumbnailListWrapper.childElementCount);
+      Unmask.children[0].style.removeProperty(`transform`);
+      Unmask.children[0].style.removeProperty(`transition`);
+      $(Unmask.children[0]).appendTo(".previewWrapper .scrollWrapper");
+      thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
+       for (let i=0; i < Cards.length; i++) {
+        Cards[i].disabled = false;
+      }
+      FirstId = parseInt(thumbnailListWrapper.children[0].style.getPropertyValue(`--idx`));
+      for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
+        thumbnailListWrapper.children[i].style.setProperty(`--idx` , FirstId + i ) ;
+      }
+    }
+    ResetCards();
+    DisableCardPress = false;
+  }, 750);
+}
+
 function CardPress(interval , dataid) {
   if (!DisableCardPress) {
     DisableCardPress = true;
@@ -369,90 +409,23 @@ function CardPress(interval , dataid) {
     for (let i=0; i < Cards.length; i++) {
       Cards[i].disabled = true;
     }
-    for (let i=0; i < Cards.length; i++) {
-      if (parseInt(thumbnailListWrapper.children[i].style.getPropertyValue(`--idx`)) == interval) {
-        thumbnailListWrapper.children[i].removeAttribute('id');
-        $(thumbnailListWrapper.children[i].cloneNode(true)).appendTo(Unmask);
-        thumbnailListWrapper.children[i].remove();
-        setTimeout(() => {
-          Unmask.children[1].classList.add("zoom");
-          if (window.innerWidth <= 1000) {
-            PosCoordsX = PosCoordsX + (1000 - window.innerWidth);
-          }
-          Unmask.children[1].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
-        }, 10);
-      }
-    };
-    setTimeout(() => {
-      Unmask.children[0].style.setProperty(`--idx`, thumbnailListWrapper.childElementCount);
-      Unmask.children[0].style.removeProperty(`transform`);
-      Unmask.children[0].style.removeProperty(`transition`);
-      // Unmask.children[1].style.setProperty(`--idx`, `0`);
-      $(Unmask.children[0]).appendTo(".previewWrapper .scrollWrapper");
-      thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].classList.remove("zoom");
-      // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style.setProperty(`--idx` , ) ;
-      // thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].style.setProperty(`--dataidx` , thumbnailListWrapper.childElementCount - 1);
-      for (let i=0; i < Cards.length; i++) {
-        Cards[i].disabled = false;
-      }
-      // let UnmaskClone = thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].cloneNode(true);
-      // console.log(UnmaskClone);
-      // for (let i = 1; i < Cards.length; i++) { 
-      //   if (i == dataVal - 1) {
-      //     thumbnailListWrapper.insertBefore(thumbnailListWrapper.children[thumbnailListWrapper.childElementCount - 1].cloneNode(true) , Cards[dataVal + 1])
-      //   }
-      // }
-      FirstId = parseInt(thumbnailListWrapper.children[0].style.getPropertyValue(`--idx`));
-      for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
-        thumbnailListWrapper.children[i].style.setProperty(`--idx` , FirstId + i ) ;
-      }
-      ResetCards();
-      DisableCardPress = false;
-    }, 650)
-    
+    findCard(interval, requeueBG); 
     setTimeout(()=> {
       dataVal = 0;
       FirstId = parseInt(thumbnailListWrapper.children[0].style.getPropertyValue(`--idx`));
       if (FirstId == interval + 1) {FirstId = FirstId - 1};
       for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
         thumbnailListWrapper.children[i].style.setProperty(`--idx` , FirstId + i ) ;
-        // if (i < thumbnailListWrapper.childElementCount / 2){
-        //   thumbnailListWrapper.children[i].style.setProperty(`--dataidx` , i ) ;
-        // } else {
-        //   dataVal = dataVal + 1;
-        //   thumbnailListWrapper.children[i].style.setProperty(`--dataidx` , i - thumbnailListWrapper.childElementCount / 2 ) ;
-        // }
-        // thumbnailListWrapper.children[i].style.setProperty(`--dataidx` , i ) ;
       }
     }, 10);
-    // if (currentIndex < projectPreviewData.length - 1) {
-    //   currentIndex++;
-    // } else currentIndex = 0;
-    // for (let i = 0; i < projectPreviewData.length; i++) {
-    //   previewIntro.children[i].classList.remove("active");
-    //   // previewNumber.children[i].classList.remove("active");
-    // }
-    // previewIntro.children[currentIndex].classList.add("active");
-
-    // $(previewIntro.children[0]).appendTo(".previewIntro");
-    // $(previewIntro.children[dataid]).prependTo(".previewIntro");
     setTimeout(() => {
       for (let i = 0; i < previewIntro.childElementCount; i++){
         if (previewIntro.children[i].classList.contains("active")) {
           previewIntro.children[i].classList.remove("active");
         }
       }
-      // previewIntro.children[previewIntro.children.length - 1].classList.remove("active");
       previewIntro.children[dataid].classList.add("active");
     }, 0);
-
-    // setTimeout(() => {
-    //   $(previewIntro.children[0]).appendTo(".previewIntro");  
-    //   $(previewIntro.children[interval]).prependTo(".previewIntro");
-    // }, 650);
-    // previewNumber.children[currentIndex].classList.add("active");
-    // previewNumber.children[currentIndex].textContent = `0${currentIndex + 1}`;
-    
   }
 };
 
@@ -463,7 +436,7 @@ var t
 window.onresize = () => {
     resizing(this, this.innerWidth, this.innerHeight) //1
     if (typeof t == 'undefined') resStarted() //2
-    clearTimeout(t); t = setTimeout(() => { t = undefined; resEnded() }, 500) //3
+    clearTimeout(t); t = setTimeout(() => { t = undefined; resEnded() }, 300) //3
 }
 
 var CardBGOffset = 0;
@@ -489,7 +462,7 @@ function resizing(target, w, h) {
     }
     Unmask.children[0].style.transform = `translate(-${PosCoordsX}px, -${PosCoordsY}px)`;
     Unmask.children[0].style.transition = `0s`;
-    console.log(Unmask.children[0].getBoundingClientRect().x);
+    // console.log(Unmask.children[0].getBoundingClientRect().x);
     for (let i = 0; i < thumbnailListWrapper.childElementCount; i++) {
       thumbnailListWrapper.children[i].style.transition = `0s`;
     }
