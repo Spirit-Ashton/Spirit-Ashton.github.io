@@ -167,7 +167,9 @@ targetProxy.CardDist = CardDist;
 setInterval(()=> {
   CardDist = Cards[0].getBoundingClientRect().right - thumbnailMain.getBoundingClientRect().left;
   targetProxy.CardDist = CardDist;
-  ResetCards();
+  if (ButtonFunctionRun == false) {
+    ResetCards();
+  }
 }, 1000);
 
 function CardButtons(){
@@ -207,8 +209,6 @@ Unmask.innerHTML += `
 // var PosCoordsX = Unmask.children[0].getBoundingClientRect().x - CornerCoords.x;
 PosCoordsX = PosCoordsX + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetX`));
 PosCoordsY = PosCoordsY + parseFloat(Unmask.children[0].style.getPropertyValue(`--BGoffsetY`));
-console.log(PosCoordsX);
-console.log(PosCoordsY);
 Unmask.children[0].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
 
 var currentIndex = 0;
@@ -328,10 +328,10 @@ var DisableCardPress = false;
 var dataVal = 0;
 let FirstId = 0;
 let BackupInterval = 0;
+let ButtonFunctionRun = false;
 
 function findCard(interval, callback) {
   BackupInterval = interval;
-  console.log(interval);
   for (let i=0; i < Cards.length; i++) {
     if (parseInt(thumbnailListWrapper.children[i].style.getPropertyValue(`--idx`)) == interval) {
       thumbnailListWrapper.children[i].removeAttribute('id'); 
@@ -369,11 +369,13 @@ function requeueBG() {
         }
       ResetCards();
       DisableCardPress = false;
+      ButtonFunctionRun = false;
     }, 750);
   }
 }
 
 function CardPress(interval , dataid) {
+  ButtonFunctionRun = true;
   if (!DisableCardPress) {
     DisableCardPress = true;
     CardBGPos();

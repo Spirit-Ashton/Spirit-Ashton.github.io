@@ -293,11 +293,13 @@ a:focus{
 }
 .ContactButton:hover{
   cursor: pointer;
-  /* opacity: 0.8; */
   filter: brightness(150%);
-  /* filter: hue-rotate(90deg); */
 }
-.ContactButton .ButtonText a{
+.TopContainer a:focus{
+  cursor: pointer;
+  filter: brightness(150%);
+}
+.TopContainer a{
   cursor: pointer;
   font-weight: 650;
   font-size: 1em;
@@ -552,7 +554,7 @@ a:focus{
   .thumbnailList .previewWrapper .thumbnail:hover{
     transition-duration: 0.4;
     transform-origin: center;
-    filter: brightness(60%);
+    /* filter: brightness(60%); */
     cursor: pointer;
   }
   .thumbnailList .previewWrapper .thumbnail.Hidden{
@@ -752,6 +754,12 @@ a:focus{
   justify-content: center;
   align-items: center;
   margin-bottom: 64px;
+
+}
+.ActionContainer a{
+  outline: none;
+  text-decoration: none;
+  /* transition: 0.4s; */
 }
 .CVButton{
   width: fit-content;
@@ -761,8 +769,13 @@ a:focus{
   padding: 1em 2em;
   margin: 0 16px;
   transition: 0.4s;
+
 }
 .CVButton:hover{
+  cursor: pointer;
+  filter: brightness(150%);
+}
+.ActionContainer a:focus{
   cursor: pointer;
   filter: brightness(150%);
 }
@@ -785,6 +798,8 @@ a:focus{
   color: var(--Accent_Colour);
   text-align: center;
   font-family: 'Hubot Sans';
+  outline: none;
+  text-decoration: none;
 }
 .PS{
   font-weight: 700;
