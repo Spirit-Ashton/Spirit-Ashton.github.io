@@ -45,6 +45,7 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
+    pointer-events: none;
 }
 section{
     position: relative;
