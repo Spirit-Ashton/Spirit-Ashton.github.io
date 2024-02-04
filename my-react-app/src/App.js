@@ -126,13 +126,6 @@ export const App = () => (
 export default App;
 
 
-
-
-
-
-
-
-
 var projectPreviewData = [
   {
     img: "./Screenshot (282).png",

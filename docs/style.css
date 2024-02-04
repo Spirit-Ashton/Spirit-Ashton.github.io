@@ -7,7 +7,7 @@
   /* --Primary_Colour: #0F7173; */
   --Primary_Colour: #0A3E38;
   --Secondary_Colour: #157A6E;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 @font-face {
   font-family: 'Mona Sans';
@@ -235,7 +235,7 @@ a:focus{
     100%{ transform: translateY(150%);}
 }
 .MainText{
-    font-size: min(2.2rem, 4.7vw);
+    font-size: max(15px, min(2.2rem, 4.7vw));
     z-index: 1;
     padding: 0 0.5em 0;
     letter-spacing: -1.3px;
@@ -413,7 +413,16 @@ a:focus{
   .previewIntro .previewTextWrapper span{
     overflow: hidden;
   }
+  .previewIntro .previewTextWrapper span a{
+    overflow: hidden;
+  }
   .previewIntro .previewTextWrapper span > *{
+    transition: 0.5s ease;
+    opacity: 0;
+    transform: translateY(300px);
+    transition-delay: calc((3 - var(--idx)) * 0.1s);
+  }
+  .previewIntro .previewTextWrapper span a > *{
     transition: 0.5s ease;
     opacity: 0;
     transform: translateY(300px);
@@ -427,28 +436,46 @@ a:focus{
     transform: translateY(0);
     transition-delay: calc(var(--idx) * 0.1s);
   }
+  .previewIntro .previewTextWrapper.active span a> *{
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--idx) * 0.1s);
+  }
   /* .previewIntro:not(.type) {
   
   } */
   .previewIntro .title{
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 700;
     text-align: center;
+    color: var(--Accent_Colour);
   }
   .previewIntro .type{
     font-size: 1.3rem;
-    font-weight: 400;
+    font-weight: 450;
     text-transform: uppercase;
     line-height: 1.1;
     letter-spacing: 1px;
     margin-top: 10px;
     text-align: center;
+    color: var(--Accent_Colour);
   }
   .previewIntro .description{
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: 400;
     margin-top: 8px;
     text-align: center;
+    color: var(--Accent_Colour);
+  }
+  .previewTextWrapper.active a{
+    width: 250px;
+    height: 50px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--Accent_Colour);
+    /* display: none; */
   }
   .previewIntro .readMoreButton{
     width: 250px;
@@ -456,7 +483,9 @@ a:focus{
     border-radius: 50px;
     margin-bottom: 20px;
     margin-top: 20px;
-    display: none;
+    text-decoration: none;
+    color: var(--Accent_Colour);
+    /* display: none; */
   }
   .previewContent .thumbnailList{
     top: -2em;
@@ -696,6 +725,7 @@ a:focus{
   button:hover{
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.4);
+    transition-delay: 0;
   }
   .previewNav .previewLine{
     flex: 1;
@@ -726,12 +756,12 @@ a:focus{
   }
 
 .CVMainContainer{
-  width: min(600px, 70vw);
+  width: min(700px, 70vw);
   height: fit-content;
   margin: 6em 0 8px 0;
 }
 .CVMain h2{
-    font-weight: 400;
+    font-weight: 700;
     font-size: 3em;
     color: var(--Accent_Colour);
     text-align: center;
@@ -742,7 +772,7 @@ a:focus{
   margin-bottom: 64px;
 }
 .CoreValues{
-    font-weight: 300;
+    font-weight: 400;
     font-size: 1.2rem;
     color: var(--Accent_Colour);
     text-align: center;
@@ -769,7 +799,6 @@ a:focus{
   padding: 1em 2em;
   margin: 0 16px;
   transition: 0.4s;
-
 }
 .CVButton:hover{
   cursor: pointer;
@@ -822,7 +851,7 @@ a:focus{
   margin-top: 152px;
 }
 .ContactText{
-  font-weight: 400;
+  font-weight: 450;
   font-size: 2em;
   color: var(--Accent_Colour);
   text-align: center;

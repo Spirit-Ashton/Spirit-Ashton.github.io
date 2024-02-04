@@ -217,11 +217,146 @@ h2{
   position: relative;
   margin: 5vh 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   min-height: 20vh;
   width: 100%;
-  justify-content: space-around;
+  justify-content: flex-end;
+  overflow: hidden;
+  /* align-items: center; */
+}
+.previewContainer .previewContent{
+  width: 100%;
+  display: flex;
+}
+.previewContainer .previewIntro{
+  position: relative;
+  width: 40%;
+  height: 100%;
+  z-index: 5;
+}
+.previewIntro .previewTextWrapper{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  pad: 0 25px 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+.previewIntro .previewTextWrapper span{
+  overflow: hidden;
+}
+.previewIntro .previewTextWrapper span > *{
+  transition: 0.5s ease;
+  opacity: 0;
+  transform: translateY(300px);
+  transition-delay: calc((3 - var(--idx)) * 0.1s);
+}
+.previewIntro .previewTextWrapper.active{
+  pointer-events: all;
+}
+.previewIntro .previewTextWrapper.active span > *{
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--idx) * 0.1s);
+}
+/* .previewIntro:not(.type) {
+
+} */
+.previewIntro .title{
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.previewIntro .type{
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.previewIntro .description{
+  font-size: 1rem;
+  font-weight: 200;
+  margin-top: 8px;
+}
+.previewIntro .readMoreButton{
+  width: 250px;
+  height: 50px;
+  border-radius: 50px;
+  margin-top: 20px;
+}
+.previewContent .thumbnailList{
+  position: relative;
+  height: 300px;
+  flex: 1;
+}
+.thumbnailList .PreviewWrapper{
+  position: relative;
+  z-index: 10;
+  height: 300px;
+}
+.thumbnailList .PreviewWrapper .thumbnail{
+  position: absolute;
+  height: 300px;
+  width: 200px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.75s cubic-bezier(0.6, 0.1, 0.3, 1);
+  transform: translateX(calc(var(--idx) * 230px));
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+}
+.thumbnailList .PreviewWrapper .thumbnail.zoom{
+  width: 1200px;
+  height: 720px;
+  transform: translate(-512px, 270px);
+  filter: brightness(40%);
+  box-shadow: none;
+}
+.thumbnail img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.previewContainer .previewNav{
+  margin-left: 40%;
+  display: flex;
   align-items: center;
+  gap: 20px;
+  padding: 50px 50px 50px 0;
+  z-index: 20;
+}
+.previewNav .nextButton{
+  width: 100px;
+  border-radius: 50px;
+}
+.previewNav .previewLine{
+  flex: 1;
+  height: 2px;
+  background-color: #ffffff;
+}
+.previewNav .previewNumber{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+.previewNumber h2{
+  position: absolute;
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(200%);
+  transition: 0.5s ease;
+}
+.previewNumber h2.active{
+  transform: unset;
 }
 .platformerVW{
   position: relative;
@@ -265,6 +400,23 @@ figcaption{
 .platformerVW:hover figcaption{
   opacity: 1;
 }
+
+button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  height: 50px;
+  transition: 0.5s ease;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
 
 .TestInput{
   position: relative;

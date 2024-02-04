@@ -7,51 +7,57 @@ var projectPreviewData = [
     description: "A Basic 2D Platformer Project focused on stability.",
     offsetX: 100,
     offsetY: 50,
+    link: "./Projects/Fruit Star.html"
   },
   {
     img: "./Feature Files/Insionne/Screenshot (282).png",
-    // video: "./Test WebBG Vid.webm",
+    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
     title: "Insionné",
     type: "Platformer Game",
     description: "A 2D Platformer Project with complex movement and a custom camera.",
     offsetX: 100,
     offsetY: 130,
+    link: "./Projects/Fruit Star.html"
   },
   {
     img: "./Feature Files/FunkyFarah/Funky Farah.jpg",
-    // video: "./Test WebBG Vid.webm",
+    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
     title: "Funky Fairy!",
     type: "Logo Design",
     description: "A Logo I created with a pop 90s vibe.",
     offsetX: 280,
     offsetY: 85,
+    link: "./Projects/Fruit Star.html"
   },
   {
     img: "./Feature Files/UCLPpt/Screenshot (285).png",
-    // video: "./Test WebBG Vid.webm",
+    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
     title: "How do writer's Engage Readers?",
     type: "Powerpoint Animation Challenge",
     description: "This is an animated powerpoint I created as a challenge to animate in powerpoint!",
     offsetX: 0,
     offsetY: 120,
+    link: "./Projects/Fruit Star.html"
   },
   {
     img: "./Feature Files/CrownedStar/Crowned Star Final.png",
-    // video: "./Test WebBG Vid.webm",
+    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
     title: "Crowned Star",
     type: "Logo Design",
     description: "A Logo I created for a TV Series/Brand",
     offsetX: 0,
     offsetY: 80,
+    link: "./Projects/Fruit Star.html"
   },
   {
     img: "./Feature Files/ThisWebsite/Screenshot (286).png",
-    // video: "./Test WebBG Vid.webm",
+    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
     title: "This Website!",
     type: "Web Development",
     description: "A Full Website developed to show off my other creations and projects.",
     offsetX: 0,
     offsetY: 0,
+    link: "./Projects/Fruit Star.html"
   },
 ];
 
@@ -67,7 +73,7 @@ for (let i = 0; i < projectPreviewData.length; i++) {
       <span><h5 class="type" style="--idx: 1">${projectPreviewData[i].type}</h5></span>
       <span><h5 class="description" style="--idx: 2">${projectPreviewData[i].description}</h5></span>
       <span>
-        <button class="readMoreButton" style="--idx: 3">Read More</button>
+        <a href="${projectPreviewData[i].link}"><button class="readMoreButton" style="--idx: 3">Read More</button></a>
       </span>
     </div>
   `;
@@ -473,3 +479,27 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
+const lenis = new Lenis()
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+
+document.querySelectorAll('a[href^="#"]').forEach((el) => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault()
+    const id = el.getAttribute('href')?.slice(1)
+    if (!id) return
+    const target = document.getElementById(id)
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+  })
+})
