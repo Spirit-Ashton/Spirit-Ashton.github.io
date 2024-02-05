@@ -19,7 +19,7 @@ var projectPreviewData = [
     description: "A 2D Platformer Project with complex movement and a custom camera.",
     offsetX: 100,
     offsetY: 130,
-    link: "./Projects/Fruit Star.html"
+    link: "./Projects/Insíonne.html"
   },
   {
     img: "./Feature Files/FunkyFarah/Funky Farah.jpg",
@@ -30,7 +30,7 @@ var projectPreviewData = [
     description: "A Logo I created with a pop 90s vibe.",
     offsetX: 280,
     offsetY: 85,
-    link: "./Projects/Fruit Star.html"
+    link: "./Projects/Fruit Star/Fruit Star.html"
   },
   {
     img: "./Feature Files/UCLPpt/Screenshot (285).png",
@@ -41,7 +41,7 @@ var projectPreviewData = [
     description: "This is an animated powerpoint I created as a challenge to animate in powerpoint!",
     offsetX: 0,
     offsetY: 120,
-    link: "./Projects/Fruit Star.html"
+    link: "./Projects/Fruit Star/Fruit Star.html"
   },
   {
     img: "./Feature Files/CrownedStar/Crowned Star Final.png",
@@ -52,7 +52,7 @@ var projectPreviewData = [
     description: "A Logo I created for a TV Series/Brand",
     offsetX: 0,
     offsetY: 80,
-    link: "./Projects/Fruit Star.html"
+    link: "./Projects/Fruit Star/Fruit Star.html"
   },
   {
     img: "./Feature Files/ThisWebsite/Screenshot (286).png",
@@ -63,7 +63,7 @@ var projectPreviewData = [
     description: "A Full Website developed to show off my other creations and projects.",
     offsetX: 0,
     offsetY: 0,
-    link: "./Projects/Fruit Star.html"
+    link: "./Projects/Fruit Star/Fruit Star.html"
   },
 ];
 
@@ -374,7 +374,7 @@ function findCard(interval, callback) {
         PosCoordsX = PosCoordsX + parseFloat(Unmask.children[1].style.getPropertyValue(`--BGoffsetX`));
         PosCoordsY = PosCoordsY + parseFloat(Unmask.children[1].style.getPropertyValue(`--BGoffsetY`));
         Unmask.children[1].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
-        
+        Unmask.childElementCount[1].querySelector('video').play();
       }, 10);
     }
   };
