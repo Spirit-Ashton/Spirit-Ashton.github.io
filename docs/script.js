@@ -34,8 +34,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/UCLPpt/Screenshot (285).png",
-    videoWebm: "./Feature Files/UCLPpt/Screenshot (285).png",
-    videoMp4: "./Feature Files/UCLPpt/Screenshot (285).png",
+    videoWebm: "./Feature Files/UCLPpt/HDWER Background Effect.webm",
+    videoMp4: "./Feature Files/UCLPpt/HDWER Background Effect.mp4",
     title: "How do writer's Engage Readers?",
     type: "Powerpoint Animation Challenge",
     description: "This is an animated powerpoint I created as a challenge to animate in powerpoint!",
