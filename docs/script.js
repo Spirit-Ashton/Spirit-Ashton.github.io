@@ -1,7 +1,8 @@
 var projectPreviewData = [
   {
     img: "./Feature Files/FruitStar/Vid Poster.jpg",
-    video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoWebm: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoMp4: "./Feature Files/FruitStar/The Perfect Run.mp4",
     title: "Fruit Star!",
     type: "Platformer Game",
     description: "A Basic 2D Platformer Project focused on stability.",
@@ -11,7 +12,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/Insionne/Screenshot (282).png",
-    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoWebm: "./Feature Files/Insionne/Screenshot (282).png",
+    videoMp4: "./Feature Files/Insionne/Screenshot (282).png",
     title: "Insionné",
     type: "Platformer Game",
     description: "A 2D Platformer Project with complex movement and a custom camera.",
@@ -21,7 +23,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/FunkyFarah/Funky Farah.jpg",
-    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoWebm: "./Feature Files/FunkyFarah/Funky Farah.jpg",
+    videoMp4: "./Feature Files/FunkyFarah/Funky Farah.jpg",
     title: "Funky Fairy!",
     type: "Logo Design",
     description: "A Logo I created with a pop 90s vibe.",
@@ -31,7 +34,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/UCLPpt/Screenshot (285).png",
-    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoWebm: "./Feature Files/UCLPpt/Screenshot (285).png",
+    videoMp4: "./Feature Files/UCLPpt/Screenshot (285).png",
     title: "How do writer's Engage Readers?",
     type: "Powerpoint Animation Challenge",
     description: "This is an animated powerpoint I created as a challenge to animate in powerpoint!",
@@ -41,7 +45,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/CrownedStar/Crowned Star Final.png",
-    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoWebm: "./Feature Files/CrownedStar/Crowned Star Final.png",
+    videoMp4: "./Feature Files/CrownedStar/Crowned Star Final.png",
     title: "Crowned Star",
     type: "Logo Design",
     description: "A Logo I created for a TV Series/Brand",
@@ -51,7 +56,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/ThisWebsite/Screenshot (286).png",
-    // video: "./Feature Files/FruitStar/Test WebBG Vid.webm",
+    videoWebm: "./Feature Files/ThisWebsite/Screenshot (286).png",
+    videoMp4: "./Feature Files/ThisWebsite/Screenshot (286).png",
     title: "This Website!",
     type: "Web Development",
     description: "A Full Website developed to show off my other creations and projects.",
@@ -94,8 +100,9 @@ for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
     thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px; --BGoffsetX: ${projectPreviewData[i].offsetX}; --BGoffsetY: ${projectPreviewData[i].offsetY};" id="Number 0">
       <img style="pointer-events: none;" src="${projectPreviewData[i].img}" alt=""></img>
-      <video data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
-        <source src="${projectPreviewData[i].video}">
+      <video preload="yes" data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
+        <source src="${projectPreviewData[i].videoWebm}" type="video/webm">
+        <source src="${projectPreviewData[i].videoMp4}" type="video/mp4">
       </video>
     </div>
   `;
@@ -103,8 +110,9 @@ for (let i = 1; i < (2 * projectPreviewData.length - 1); i++) {
     thumbnailListWrapper.innerHTML += `
     <div class="thumbnail" style="--idx: ${i - 1}; --dataidx: ${i}; --offset: ${0}px; --BGoffsetX: ${projectPreviewData[i].offsetX}; --BGoffsetY: ${projectPreviewData[i].offsetY};">
       <img style="pointer-events: none;" src="${projectPreviewData[i].img}" alt=""></img>
-      <video data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
-        <source src="${projectPreviewData[i].video}">
+      <video preload="yes" data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
+      <source src="${projectPreviewData[i].videoWebm}" type="video/webm">
+      <source src="${projectPreviewData[i].videoMp4}" type="video/mp4">
       </video>
     </div>
   `;
@@ -170,13 +178,26 @@ var targetProxy = new Proxy(targetObj, {
 
 targetProxy.CardDist = CardDist;
 
-setInterval(()=> {
-  CardDist = Cards[0].getBoundingClientRect().right - thumbnailMain.getBoundingClientRect().left;
-  targetProxy.CardDist = CardDist;
-  if (ButtonFunctionRun == false) {
-    ResetCards();
+function VideoToggle(){
+  for (let i = 0; i < Cards.length; i++) {
+    // console.log(Cards[i].querySelector("video"));
+    Cards[i].querySelector("video").pause();
   }
-}, 1000);
+}
+
+VideoToggle();
+
+let CardCheck = function(){
+  setInterval(()=> {
+    CardDist = Cards[0].getBoundingClientRect().right - thumbnailMain.getBoundingClientRect().left;
+    targetProxy.CardDist = CardDist;
+    if (ButtonFunctionRun == false) {
+      ResetCards();
+    }
+  }, 1000);
+};
+
+window.onload = CardCheck();
 
 function CardButtons(){
   for (let i = 0; i < Cards.length; i++) {
@@ -207,8 +228,9 @@ var PosCoordsX = 0;
 Unmask.innerHTML += `
   <div class="thumbnail zoom" style="--idx:0; --dataidx:0; --BGoffsetX: ${projectPreviewData[0].offsetX}; --BGoffsetY: ${projectPreviewData[0].offsetY}; transform: translate(0px , 0px); transition: 0s">
     <img style="pointer-events: none;" src="${projectPreviewData[0].img}" alt=""></img>
-      <video data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
-        <source src="${projectPreviewData[0].video}">
+      <video preload="yes" data-inline-media playsInline autoplay muted loop preload="metadata" style="pointer-events: none; ">
+          <source src="${projectPreviewData[0].videoWebm}" type="video/webm">
+          <source src="${projectPreviewData[0].videoMp4}" type="video/mp4">
       </video>
   </div>
 `;
@@ -352,6 +374,7 @@ function findCard(interval, callback) {
         PosCoordsX = PosCoordsX + parseFloat(Unmask.children[1].style.getPropertyValue(`--BGoffsetX`));
         PosCoordsY = PosCoordsY + parseFloat(Unmask.children[1].style.getPropertyValue(`--BGoffsetY`));
         Unmask.children[1].style.transform = `translate(calc(-1 * ${PosCoordsX}px), calc(-1 * ${PosCoordsY}px))`;
+        
       }, 10);
     }
   };
@@ -376,6 +399,7 @@ function requeueBG() {
       ResetCards();
       DisableCardPress = false;
       ButtonFunctionRun = false;
+      VideoToggle();
     }, 750);
   }
 }

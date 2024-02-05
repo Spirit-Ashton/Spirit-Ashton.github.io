@@ -1,27 +1,3 @@
-const lenis = new Lenis()
-
-lenis.on('scroll', (e) => {
-  console.log(e)
-})
-
-function raf(time) {
-  lenis.raf(time)
-  requestAnimationFrame(raf)
-}
-
-requestAnimationFrame(raf)
-
-document.querySelectorAll('a[href^="#"]').forEach((el) => {
-  el.addEventListener('click', (e) => {
-    e.preventDefault()
-    const id = el.getAttribute('href')?.slice(1)
-    if (!id) return
-    const target = document.getElementById(id)
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    }
-  })
-})
 
 let Mobile = false;
 function myFunction(x) {
