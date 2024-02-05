@@ -250,4 +250,63 @@ gsap.from(CardE, {
 
 })
 
+const CardPopF = document.querySelector(".CardPop.F");
 
+gsap.from(CardPopF, {
+    scrollTrigger: {
+        trigger: CardPopF,
+        start: 'top 110%',
+        end: 'top 40%',
+        scrub: true,
+        markers: false
+    },
+    x: -500,
+    opacity: 0,
+    rotate: 19
+
+})
+const CardF = document.querySelector(".Card.F");
+
+gsap.from(CardF, {
+    scrollTrigger: {
+        trigger: CardF,
+        start: 'top 90%',
+        end: 'top 30%',
+        scrub: true,
+        markers: false
+    },
+    x: 500,
+    opacity: 0,
+    rotate: -13,
+
+})
+const CardPopG = document.querySelector(".CardPop.G");
+
+gsap.from(CardPopG, {
+    scrollTrigger: {
+        trigger: CardPopG,
+        start: 'top 90%',
+        end: 'top 30%',
+        scrub: true,
+        markers: false
+    },
+    x: 500,
+    opacity: 0,
+    rotate: 19
+
+})
+const CardG = document.querySelector(".Card.G");
+
+gsap.from(CardG, {
+    scrollTrigger: {
+        trigger: CardG,
+        start: 'top 110%',
+        end: 'top 20%',
+        scrub: true,
+        markers: false
+    },
+    x: -500,
+    opacity: 0,
+    rotate: -13,
+
+})

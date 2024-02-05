@@ -651,11 +651,7 @@ a:focus{
   margin: 0 16px;
   transition: 0.4s;
 }
-.CVButton:hover{
-  cursor: pointer;
-  filter: brightness(150%);
-}
-.ActionContainer a:focus{
+.ActionContainer a:hover,.ActionContainer a:focus{
   cursor: pointer;
   filter: brightness(150%);
 }
@@ -667,10 +663,6 @@ a:focus{
   padding: 1em 2em;
   margin: 0 16px;
   transition: 0.4s;
-}
-.PSButton:hover{
-  cursor: pointer;
-  filter: brightness(150%);
 }
 .CV{
   font-weight: 700;

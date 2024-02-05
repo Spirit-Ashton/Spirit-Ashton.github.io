@@ -289,22 +289,30 @@ a:focus{
   filter: brightness(100%);
 }
 .ImgContainer .Sizer{
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  object-fit: cover;  
 }
-
 .ImgContainer .Sizer img{
-  top: -20.2%;
+  top: -65%;
+  left: -12%;
+  width: 120%;
   position: absolute;
-  object-fit: cover;
 }
 .ImgContainer .Sizer.A img{
-  top: -20.2;
+  top: -20.2%;
   left: -5%;
   width: 110%;
   position: absolute;
-  object-fit: cover;  
+
   filter: brightness(60%); 
+}
+.ImgContainer .Sizer.B img{
+  top: -35%;
+  left: -12%;
+  width: 120%;
+  position: absolute;
 }
 .CardContainer{
   width:100%;
@@ -395,8 +403,8 @@ a:focus{
 }
 .Card.E{
   top: var(--OffsetHeight);
-  width: max(19vw, 170px);
-  aspect-ratio: 640/850;
+  width: max(24vw, 170px);
+  aspect-ratio: 825/585;
   rotate: 4.6deg;
   filter: brightness(80%);
   left: 10%;
@@ -406,11 +414,49 @@ a:focus{
   height: auto;
   object-fit: cover;
 }
-.Card.E img{
-  left: -130%;
-  top: -45%;
-  width: 400%;
+.Card.E video{
+  left: -45%;
+  top: -7%;
+  width: 180%;
 }
+.Card.F{
+  top: var(--OffsetHeight);
+  width: max(23vw, 170px);
+  aspect-ratio: 300/215;
+  rotate: -14deg;
+  filter: brightness(80%);
+  right: 12%;
+}
+.Card.F .Sizer{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.Card.F img{
+  left: -17%;
+  top: 0%;
+  width: 120%;
+}
+.Card.G{
+  top: var(--OffsetHeight);
+  width: max(17vw, 150px);
+  aspect-ratio: 400/500;
+  rotate: 8deg;
+  filter: brightness(80%);
+  left: 14%; 
+}
+.Card.G .Sizer{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.Card.G img{
+  left: -0%;
+  top: -0%;
+  width: 100%;
+  /* width: max(150vw, calc(170px * (150/23))); */
+}
+
 .CardContainer img{
   /* max-width: 100%;
   max-height: 100%; */
@@ -450,6 +496,18 @@ a:focus{
   left: 43%;
   top: 68%;
 }
+.CardPop.F{
+  position: absolute;
+  left: 13%;
+  top: 15%;
+}
+.CardPop.G{
+  position: absolute;
+  left: 47%;
+  top: 66%;
+}
+
+
 .CardPop .CardText{
   color: var(--Accent_Colour);
   font-weight: 500;
@@ -480,10 +538,13 @@ a:focus{
     transform: none;
   }
   .ImgContainer{
-    aspect-ratio: 600/420;
+    aspect-ratio: 720/420;
   }
-  .ImgContainer img{
-    top: -10%;
+  .ImgContainer .Sizer img{ 
+    top:10%;
+  }
+  .ImgContainer .Sizer.B img{ 
+    top:10%;
   }
   .CardContainer{
     display: flex;
@@ -503,7 +564,7 @@ a:focus{
     rotate: -4deg;
   }
   .Card.A img{
-    left: -90%;
+    left: -115%;
     top: -200%;
     width: 300%;
     /* width: max(150vw, calc(170px * (150/23))); */
@@ -515,10 +576,10 @@ a:focus{
     margin-bottom: 80px;
   }
   .Card.B img{
-    left: -6%;
+    left: -20%;
     top: -2%;
-    width: max(325vw, calc(180px * (325/50)));
     /* width: max(150vw, calc(170px * (150/23))); */
+    width: 130%
   }
   .Card.C{
     width: max(45vw, 180px);
@@ -537,10 +598,20 @@ a:focus{
     left: 0;
     margin-bottom: 80px;
   }
-  .Card.E img{
-    left: -90%;
-    top: -180%;
-    width: 300%;
+  .Card.E video{
+    left: -17%;
+    top: -31%;
+    width: 130%;
+  }
+  .Card.F{
+    width: max(48vw, 200px);
+    top: 0;
+    left: 0;
+  }
+  .Card.G{
+    width: max(32vw, 140px);
+    top: 0;
+    left: 0;
   }
   .CardPop{
     margin: 2em 0;
@@ -567,6 +638,16 @@ a:focus{
     top: 0;
   }
   .CardPop.E{
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  .CardPop.F{
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  .CardPop.G{
     position: relative;
     left: 0;
     top: 0;
@@ -645,14 +726,33 @@ a:focus{
   justify-content: center;
   align-items: center;
   margin-top: 64px;
-
 }
 .ActionContainer a{
   outline: none;
   text-decoration: none;
   /* transition: 0.4s; */
 }
-.CVButton{
+.DesignContainer{
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 128px;
+}
+.DesignContainer a{
+  outline: none;
+  text-decoration: none;
+  /* transition: 0.4s; */
+}
+.DesignContainer a:hover, .DesignContainer a:focus{
+  cursor: pointer;
+  filter: brightness(150%);
+}
+.DesignContainer .Button{
+  background-color: var(--Secondary_Colour);
+}
+.Button{
   width: fit-content;
   height: fit-content;
   background-color: var(--Primary_Colour);
@@ -661,28 +761,19 @@ a:focus{
   margin: 0 16px;
   transition: 0.4s;
 }
-.CVButton:hover{
+/* .Button:hover{
+  cursor: pointer;
+  filter: brightness(150%);
+} */
+.ActionContainer a:hover,.ActionContainer a:focus{
   cursor: pointer;
   filter: brightness(150%);
 }
-.ActionContainer a:focus{
-  cursor: pointer;
-  filter: brightness(150%);
+
+.DesignContainer .ButtonText{
+  color: var(--Base_Colour);
 }
-.PSButton{
-  width: fit-content;
-  height: fit-content;
-  background-color: var(--Secondary_Colour);
-  border-radius: calc(1em + 16px);
-  padding: 1em 2em;
-  margin: 0 16px;
-  transition: 0.4s;
-}
-.PSButton:hover{
-  cursor: pointer;
-  filter: brightness(150%);
-}
-.CV{
+.ButtonText{
   font-weight: 700;
   font-size: 1em;
   color: var(--Accent_Colour);
@@ -690,13 +781,6 @@ a:focus{
   font-family: 'Hubot Sans';
   outline: none;
   text-decoration: none;
-}
-.PS{
-  font-weight: 700;
-  font-size: 1em;
-  color: var(--Base_Colour);
-  text-align: center;
-  font-family: 'Hubot Sans';
 }
 .ProjectsBG{
     /* background: rgba(18, 9, 50, 1);     */
