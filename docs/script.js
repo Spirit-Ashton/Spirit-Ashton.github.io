@@ -12,8 +12,8 @@ var projectPreviewData = [
   },
   {
     img: "./Feature Files/Insionne/Screenshot (282).png",
-    videoWebm: "./Feature Files/Insionne/Screenshot (282).png",
-    videoMp4: "./Feature Files/Insionne/Screenshot (282).png",
+    videoWebm: "./Feature Files/Insionne/Insionne Camera Work.webm",
+    videoMp4: "./Feature Files/Insionne/Insionne Camera Work 720p.mp4",
     title: "Insionné",
     type: "Platformer Game",
     description: "A 2D Platformer Project with complex movement and a custom camera.",
